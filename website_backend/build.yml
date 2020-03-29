@@ -1,7 +1,4 @@
 version: 0.1
-env:
-  variables:
-    NODE_PATH: website_backend/node_modules
 backend:
   phases:
     build:
