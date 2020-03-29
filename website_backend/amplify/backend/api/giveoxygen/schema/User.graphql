@@ -1,0 +1,26 @@
+type User 
+  @model
+  @key(fields: ["email"])
+  @auth(rules: [
+    {allow: private, operations: [read, create]},
+    # {allow: owner, ownerField: "email", operations: [read]},
+    {allow: groups, groups: ["Admins"]},
+  ])
+{
+  email: String!
+  firstName: String
+  lastName: String
+  phoneNumber: String
+  createdAt: AWSDateTime! @auto
+  updatedAt: AWSDateTime! @auto
+  
+  isEmailVerified: Int!
+  isActive: Int!
+  role: RoleType!
+}
+
+enum RoleType { 
+  hospitalAdmin
+  individual
+  supplier
+}

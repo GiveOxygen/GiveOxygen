@@ -1,0 +1,20 @@
+{
+    "john": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-giveoxygen-john-113911-authRole",
+            "UnauthRoleArn": "arn:aws:iam::213716610217:role/amplify-giveoxygen-john-113911-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::213716610217:role/amplify-giveoxygen-john-113911-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-giveoxygen-john-113911-deployment",
+            "UnauthRoleName": "amplify-giveoxygen-john-113911-unauthRole",
+            "StackName": "amplify-giveoxygen-john-113911",
+            "StackId": "arn:aws:cloudformation:us-east-1:213716610217:stack/amplify-giveoxygen-john-113911/41f84a60-705a-11ea-a7ad-126c97cb5bc1",
+            "AmplifyAppId": "d1g0dua9gt4hcz"
+        },
+        "categories": {
+            "auth": {
+                "giveoxygen09896bf9": {}
+            }
+        }
+    }
+}
