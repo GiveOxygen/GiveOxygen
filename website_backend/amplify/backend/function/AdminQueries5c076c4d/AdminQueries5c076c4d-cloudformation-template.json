@@ -5,9 +5,9 @@
 		"env": {
 			"Type": "String"
 		},
-		"authgiveoxygen09896bf9UserPoolId": {
+		"authgiveoxygene2d3455dUserPoolId": {
 			"Type": "String",
-			"Default": "authgiveoxygen09896bf9UserPoolId"
+			"Default": "authgiveoxygene2d3455dUserPoolId"
 		}
 	},
 	"Conditions": {
@@ -32,12 +32,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"AdminQueriesfe4e8715",
+						"AdminQueries5c076c4d",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"AdminQueriesfe4e8715",
+									"AdminQueries5c076c4d",
 									"-",
 									{
 										"Ref": "env"
@@ -54,7 +54,7 @@
 						},
 						"GROUP": "Admins",
 						"USERPOOL": {
-							"Ref": "authgiveoxygen09896bf9UserPoolId"
+							"Ref": "authgiveoxygene2d3455dUserPoolId"
 						}
 					}
 				},
@@ -67,8 +67,8 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-giveoxygen-john-113911-deployment",
-					"S3Key": "amplify-builds/AdminQueriesfe4e8715-6377527759574c555147-build.zip"
+					"S3Bucket": "amplify-giveoxygen-local-155808-deployment",
+					"S3Key": "amplify-builds/AdminQueries5c076c4d-6377527759574c555147-build.zip"
 				}
 			}
 		},
@@ -78,12 +78,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"AdminQueriesfe4e8715LambdaRole",
+						"AdminQueries5c076c4dLambdaRole",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"AdminQueriesfe4e8715LambdaRole",
+									"AdminQueries5c076c4dLambdaRole",
 									"-",
 									{
 										"Ref": "env"
@@ -178,7 +178,7 @@
 										},
 										":userpool/",
 										{
-											"Ref": "authgiveoxygen09896bf9UserPoolId"
+											"Ref": "authgiveoxygene2d3455dUserPoolId"
 										}
 									]
 								]

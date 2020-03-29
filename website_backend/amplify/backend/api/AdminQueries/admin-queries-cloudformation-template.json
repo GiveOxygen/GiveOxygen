@@ -14,23 +14,23 @@
         },
         
         
-          "authgiveoxygen09896bf9UserPoolId": {
+          "authgiveoxygene2d3455dUserPoolId": {
             "Type": "String",
-            "Default": "authgiveoxygen09896bf9UserPoolId"
+            "Default": "authgiveoxygene2d3455dUserPoolId"
           },
         
           
           
         
-          "functionAdminQueriesfe4e8715Arn": {
+          "functionAdminQueries5c076c4dArn": {
             "Type": "String",
-            "Default": "functionAdminQueriesfe4e8715Arn"
+            "Default": "functionAdminQueries5c076c4dArn"
           },
         
           
-          "functionAdminQueriesfe4e8715Name": {
+          "functionAdminQueries5c076c4dName": {
             "Type": "String",
-            "Default": "functionAdminQueriesfe4e8715Name"
+            "Default": "functionAdminQueries5c076c4dName"
           }
         
           
@@ -176,7 +176,7 @@
                                 ":lambda:path/2015-03-31/functions/",
                                 {
                                     
-                                    "Ref": "functionAdminQueriesfe4e8715Arn"
+                                    "Ref": "functionAdminQueries5c076c4dArn"
                                 },
                                 "/invocations"
                               ]
@@ -217,7 +217,7 @@
                                   ":userpool/",
                                   {
                                                   
-                                    "Ref": "authgiveoxygen09896bf9UserPoolId"
+                                    "Ref": "authgiveoxygene2d3455dUserPoolId"
                                   }
 
                                 ]
@@ -268,7 +268,7 @@
         "Properties": {
             "FunctionName": 
                 {
-                  "Ref": "functionAdminQueriesfe4e8715Name"
+                  "Ref": "functionAdminQueries5c076c4dName"
                 },
                 
                 "Action": "lambda:InvokeFunction",

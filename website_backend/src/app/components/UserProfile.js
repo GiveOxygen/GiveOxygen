@@ -7,8 +7,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import request from '../utils/request';
-import { getUser } from '../../graphql/queries';
-import { createUser } from '../../graphql/mutations';
+import { getHospitalAdmin, getMaker } from '../../graphql/queries';
+import { createHospitalAdmin, creatM } from '../../graphql/mutations';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,28 +31,28 @@ export default () => {
 
   useEffect(() => {
     (async () => {
-      const res = await Auth.currentAuthenticatedUser();
-      console.log(res);
-      // const groups = res.signInUserSession.accessToken.payload['cognito:groups'];
-      const { data: { getUser: result } } = await request(getUser, { email: res.attributes.email });
-      if (result) {
-        setUser(result);
-        return;
-      }
+      // const res = await Auth.currentAuthenticatedUser();
+      // console.log(res);
+      // // const groups = res.signInUserSession.accessToken.payload['cognito:groups'];
+      // const { data: { getUser: result } } = await request(getUser, { email: res.attributes.email });
+      // if (result) {
+      //   setUser(result);
+      //   return;
+      // }
 
-      // add user
-      const { data: { createUser: savedResult } } = await request(createUser, {
-        input: {
-          email: res.attributes.email,
-          firstName: res.attributes.given_name,
-          lastName: res.attributes.family_name,
-          phoneNumber: res.attributes.phone_number,
-          isEmailVerified: res.attributes.email_verified ? 1 : 0,
-          isActive: 1,
-          role: res.attributes['custom:role'],
-        },
-      });
-      setUser(savedResult);
+      // // add user
+      // const { data: { createUser: savedResult } } = await request(createUser, {
+      //   input: {
+      //     email: res.attributes.email,
+      //     firstName: res.attributes.given_name,
+      //     lastName: res.attributes.family_name,
+      //     phoneNumber: res.attributes.phone_number,
+      //     isEmailVerified: res.attributes.email_verified ? 1 : 0,
+      //     isActive: 1,
+      //     role: res.attributes['custom:role'],
+      //   },
+      // });
+      // setUser(savedResult);
     })();
   }, []);
 

@@ -1,57 +1,288 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createUser = /* GraphQL */ `
-  mutation CreateUser(
-    $input: CreateUserInput!
-    $condition: ModelUserConditionInput
+export const createHospital = /* GraphQL */ `
+  mutation CreateHospital(
+    $input: CreateHospitalInput!
+    $condition: ModelHospitalConditionInput
   ) {
-    createUser(input: $input, condition: $condition) {
+    createHospital(input: $input, condition: $condition) {
+      id
+      name
+      description
       email
-      firstName
-      lastName
       phoneNumber
+      address {
+        street
+        street2
+        city
+        state
+        zipCode
+      }
       createdAt
       updatedAt
-      isEmailVerified
-      isActive
-      role
+      admins {
+        items {
+          email
+          firstName
+          lastName
+          phoneNumber
+          createdAt
+          updatedAt
+          hospitalId
+          jobTitle
+        }
+        nextToken
+      }
     }
   }
 `;
-export const updateUser = /* GraphQL */ `
-  mutation UpdateUser(
-    $input: UpdateUserInput!
-    $condition: ModelUserConditionInput
+export const updateHospital = /* GraphQL */ `
+  mutation UpdateHospital(
+    $input: UpdateHospitalInput!
+    $condition: ModelHospitalConditionInput
   ) {
-    updateUser(input: $input, condition: $condition) {
+    updateHospital(input: $input, condition: $condition) {
+      id
+      name
+      description
       email
-      firstName
-      lastName
       phoneNumber
+      address {
+        street
+        street2
+        city
+        state
+        zipCode
+      }
       createdAt
       updatedAt
-      isEmailVerified
-      isActive
-      role
+      admins {
+        items {
+          email
+          firstName
+          lastName
+          phoneNumber
+          createdAt
+          updatedAt
+          hospitalId
+          jobTitle
+        }
+        nextToken
+      }
     }
   }
 `;
-export const deleteUser = /* GraphQL */ `
-  mutation DeleteUser(
-    $input: DeleteUserInput!
-    $condition: ModelUserConditionInput
+export const deleteHospital = /* GraphQL */ `
+  mutation DeleteHospital(
+    $input: DeleteHospitalInput!
+    $condition: ModelHospitalConditionInput
   ) {
-    deleteUser(input: $input, condition: $condition) {
+    deleteHospital(input: $input, condition: $condition) {
+      id
+      name
+      description
+      email
+      phoneNumber
+      address {
+        street
+        street2
+        city
+        state
+        zipCode
+      }
+      createdAt
+      updatedAt
+      admins {
+        items {
+          email
+          firstName
+          lastName
+          phoneNumber
+          createdAt
+          updatedAt
+          hospitalId
+          jobTitle
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const createHospitalAdmin = /* GraphQL */ `
+  mutation CreateHospitalAdmin(
+    $input: CreateHospitalAdminInput!
+    $condition: ModelHospitalAdminConditionInput
+  ) {
+    createHospitalAdmin(input: $input, condition: $condition) {
       email
       firstName
       lastName
       phoneNumber
       createdAt
       updatedAt
-      isEmailVerified
-      isActive
-      role
+      hospitalId
+      hospital {
+        id
+        name
+        description
+        email
+        phoneNumber
+        address {
+          street
+          street2
+          city
+          state
+          zipCode
+        }
+        createdAt
+        updatedAt
+        admins {
+          nextToken
+        }
+      }
+      jobTitle
+    }
+  }
+`;
+export const updateHospitalAdmin = /* GraphQL */ `
+  mutation UpdateHospitalAdmin(
+    $input: UpdateHospitalAdminInput!
+    $condition: ModelHospitalAdminConditionInput
+  ) {
+    updateHospitalAdmin(input: $input, condition: $condition) {
+      email
+      firstName
+      lastName
+      phoneNumber
+      createdAt
+      updatedAt
+      hospitalId
+      hospital {
+        id
+        name
+        description
+        email
+        phoneNumber
+        address {
+          street
+          street2
+          city
+          state
+          zipCode
+        }
+        createdAt
+        updatedAt
+        admins {
+          nextToken
+        }
+      }
+      jobTitle
+    }
+  }
+`;
+export const deleteHospitalAdmin = /* GraphQL */ `
+  mutation DeleteHospitalAdmin(
+    $input: DeleteHospitalAdminInput!
+    $condition: ModelHospitalAdminConditionInput
+  ) {
+    deleteHospitalAdmin(input: $input, condition: $condition) {
+      email
+      firstName
+      lastName
+      phoneNumber
+      createdAt
+      updatedAt
+      hospitalId
+      hospital {
+        id
+        name
+        description
+        email
+        phoneNumber
+        address {
+          street
+          street2
+          city
+          state
+          zipCode
+        }
+        createdAt
+        updatedAt
+        admins {
+          nextToken
+        }
+      }
+      jobTitle
+    }
+  }
+`;
+export const createMaker = /* GraphQL */ `
+  mutation CreateMaker(
+    $input: CreateMakerInput!
+    $condition: ModelMakerConditionInput
+  ) {
+    createMaker(input: $input, condition: $condition) {
+      email
+      firstName
+      lastName
+      phoneNumber
+      createdAt
+      updatedAt
+      jobTitle
+      address {
+        street
+        street2
+        city
+        state
+        zipCode
+      }
+    }
+  }
+`;
+export const updateMaker = /* GraphQL */ `
+  mutation UpdateMaker(
+    $input: UpdateMakerInput!
+    $condition: ModelMakerConditionInput
+  ) {
+    updateMaker(input: $input, condition: $condition) {
+      email
+      firstName
+      lastName
+      phoneNumber
+      createdAt
+      updatedAt
+      jobTitle
+      address {
+        street
+        street2
+        city
+        state
+        zipCode
+      }
+    }
+  }
+`;
+export const deleteMaker = /* GraphQL */ `
+  mutation DeleteMaker(
+    $input: DeleteMakerInput!
+    $condition: ModelMakerConditionInput
+  ) {
+    deleteMaker(input: $input, condition: $condition) {
+      email
+      firstName
+      lastName
+      phoneNumber
+      createdAt
+      updatedAt
+      jobTitle
+      address {
+        street
+        street2
+        city
+        state
+        zipCode
+      }
     }
   }
 `;

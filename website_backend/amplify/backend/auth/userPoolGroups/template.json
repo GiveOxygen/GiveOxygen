@@ -1,23 +1,23 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
     "Parameters": {
-        "authgiveoxygen09896bf9UserPoolId": {
+        "authgiveoxygene2d3455dUserPoolId": {
             "Type": "String",
-            "Default": "authgiveoxygen09896bf9UserPoolId"
+            "Default": "authgiveoxygene2d3455dUserPoolId"
         },
         
-        "authgiveoxygen09896bf9IdentityPoolId": {
+        "authgiveoxygene2d3455dIdentityPoolId": {
             "Type": "String",
-            "Default": "authgiveoxygen09896bf9IdentityPoolId"
+            "Default": "authgiveoxygene2d3455dIdentityPoolId"
         },
         
-        "authgiveoxygen09896bf9AppClientID": {
+        "authgiveoxygene2d3455dAppClientID": {
             "Type": "String",
-            "Default": "authgiveoxygen09896bf9AppClientID"
+            "Default": "authgiveoxygene2d3455dAppClientID"
         },
-        "authgiveoxygen09896bf9AppClientIDWeb": {
+        "authgiveoxygene2d3455dAppClientIDWeb": {
             "Type": "String",
-            "Default": "authgiveoxygen09896bf9AppClientIDWeb"
+            "Default": "authgiveoxygene2d3455dAppClientIDWeb"
         },
         "AuthRoleArn": {
             "Type": "String"
@@ -41,173 +41,11 @@
     },
     "Resources": {
     
-        "UsersGroup": {
-          "Type" : "AWS::Cognito::UserPoolGroup",
-          "Properties" : {
-              "GroupName" : "Users",
-              "Precedence" : 1,
-              
-              "RoleArn" : {
-                "Fn::GetAtt": [
-                    "UsersGroupRole",
-                    "Arn"
-                ]
-              },
-              
-              "UserPoolId" : {
-                "Ref": "authgiveoxygen09896bf9UserPoolId"
-              } 
-            }
-        },
-        
-        "UsersGroupRole": {
-            "Type": "AWS::IAM::Role",
-            "Properties": {
-                "RoleName":{
-                    "Fn::Join": [
-                        "",
-                        [
-                          {
-                            "Ref": "authgiveoxygen09896bf9UserPoolId"
-                          },
-                          "-UsersGroupRole"
-                        ]
-                    ]
-                },
-                "AssumeRolePolicyDocument": {
-                    "Version": "2012-10-17",
-                    "Statement": [
-                        {
-                            "Sid": "",
-                            "Effect": "Allow",
-                            "Principal": {
-                                "Federated": "cognito-identity.amazonaws.com"
-                            },
-                            "Action": "sts:AssumeRoleWithWebIdentity",
-                            "Condition": {
-                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authgiveoxygen09896bf9IdentityPoolId"}},
-                              "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-     
-    
-        "SuppliersGroup": {
-          "Type" : "AWS::Cognito::UserPoolGroup",
-          "Properties" : {
-              "GroupName" : "Suppliers",
-              "Precedence" : 2,
-              
-              "RoleArn" : {
-                "Fn::GetAtt": [
-                    "SuppliersGroupRole",
-                    "Arn"
-                ]
-              },
-              
-              "UserPoolId" : {
-                "Ref": "authgiveoxygen09896bf9UserPoolId"
-              } 
-            }
-        },
-        
-        "SuppliersGroupRole": {
-            "Type": "AWS::IAM::Role",
-            "Properties": {
-                "RoleName":{
-                    "Fn::Join": [
-                        "",
-                        [
-                          {
-                            "Ref": "authgiveoxygen09896bf9UserPoolId"
-                          },
-                          "-SuppliersGroupRole"
-                        ]
-                    ]
-                },
-                "AssumeRolePolicyDocument": {
-                    "Version": "2012-10-17",
-                    "Statement": [
-                        {
-                            "Sid": "",
-                            "Effect": "Allow",
-                            "Principal": {
-                                "Federated": "cognito-identity.amazonaws.com"
-                            },
-                            "Action": "sts:AssumeRoleWithWebIdentity",
-                            "Condition": {
-                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authgiveoxygen09896bf9IdentityPoolId"}},
-                              "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-     
-    
-        "HospitalAdminsGroup": {
-          "Type" : "AWS::Cognito::UserPoolGroup",
-          "Properties" : {
-              "GroupName" : "HospitalAdmins",
-              "Precedence" : 3,
-              
-              "RoleArn" : {
-                "Fn::GetAtt": [
-                    "HospitalAdminsGroupRole",
-                    "Arn"
-                ]
-              },
-              
-              "UserPoolId" : {
-                "Ref": "authgiveoxygen09896bf9UserPoolId"
-              } 
-            }
-        },
-        
-        "HospitalAdminsGroupRole": {
-            "Type": "AWS::IAM::Role",
-            "Properties": {
-                "RoleName":{
-                    "Fn::Join": [
-                        "",
-                        [
-                          {
-                            "Ref": "authgiveoxygen09896bf9UserPoolId"
-                          },
-                          "-HospitalAdminsGroupRole"
-                        ]
-                    ]
-                },
-                "AssumeRolePolicyDocument": {
-                    "Version": "2012-10-17",
-                    "Statement": [
-                        {
-                            "Sid": "",
-                            "Effect": "Allow",
-                            "Principal": {
-                                "Federated": "cognito-identity.amazonaws.com"
-                            },
-                            "Action": "sts:AssumeRoleWithWebIdentity",
-                            "Condition": {
-                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authgiveoxygen09896bf9IdentityPoolId"}},
-                              "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-     
-    
         "AdminsGroup": {
           "Type" : "AWS::Cognito::UserPoolGroup",
           "Properties" : {
               "GroupName" : "Admins",
-              "Precedence" : 4,
+              "Precedence" : 1,
               
               "RoleArn" : {
                 "Fn::GetAtt": [
@@ -217,7 +55,7 @@
               },
               
               "UserPoolId" : {
-                "Ref": "authgiveoxygen09896bf9UserPoolId"
+                "Ref": "authgiveoxygene2d3455dUserPoolId"
               } 
             }
         },
@@ -230,7 +68,7 @@
                         "",
                         [
                           {
-                            "Ref": "authgiveoxygen09896bf9UserPoolId"
+                            "Ref": "authgiveoxygene2d3455dUserPoolId"
                           },
                           "-AdminsGroupRole"
                         ]
@@ -247,7 +85,7 @@
                             },
                             "Action": "sts:AssumeRoleWithWebIdentity",
                             "Condition": {
-                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authgiveoxygen09896bf9IdentityPoolId"}},
+                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authgiveoxygene2d3455dIdentityPoolId"}},
                               "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
                             }
                         }
@@ -273,7 +111,7 @@
                                 "",
                                 [
                                   
-                                  "giveoxygen09896bf9",
+                                  "giveoxygene2d3455d",
                                   "-ExecutionRole-",
                                   {
                                     "Ref": "env"
@@ -432,16 +270,16 @@
                     "Ref": "UnauthRoleArn"
                 },
                 "identityPoolId": {
-                    "Ref": "authgiveoxygen09896bf9IdentityPoolId"
+                    "Ref": "authgiveoxygene2d3455dIdentityPoolId"
                 },
                 "userPoolId": {
-                    "Ref": "authgiveoxygen09896bf9UserPoolId"
+                    "Ref": "authgiveoxygene2d3455dUserPoolId"
                 },
                 "appClientIDWeb": {
-                    "Ref": "authgiveoxygen09896bf9AppClientIDWeb"
+                    "Ref": "authgiveoxygene2d3455dAppClientIDWeb"
                 },
                 "appClientID": {
-                    "Ref": "authgiveoxygen09896bf9AppClientID"
+                    "Ref": "authgiveoxygene2d3455dAppClientID"
                 },
                 "region": {
                     "Ref": "AWS::Region"
@@ -456,39 +294,6 @@
     },
     
     "Outputs": {
-      
-        "UsersGroupRole": {
-            "Value": {
-                "Fn::GetAtt": [
-                    "UsersGroupRole",
-                    "Arn"
-                ]
-            }
-         
-        },
-        
-      
-        "SuppliersGroupRole": {
-            "Value": {
-                "Fn::GetAtt": [
-                    "SuppliersGroupRole",
-                    "Arn"
-                ]
-            }
-         
-        },
-        
-      
-        "HospitalAdminsGroupRole": {
-            "Value": {
-                "Fn::GetAtt": [
-                    "HospitalAdminsGroupRole",
-                    "Arn"
-                ]
-            }
-         
-        },
-        
       
         "AdminsGroupRole": {
             "Value": {

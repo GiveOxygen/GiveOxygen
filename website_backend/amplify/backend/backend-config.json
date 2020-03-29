@@ -1,6 +1,6 @@
 {
 	"auth": {
-		"giveoxygen09896bf9": {
+		"giveoxygene2d3455d": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": []
@@ -11,7 +11,7 @@
 			"dependsOn": [
 				{
 					"category": "auth",
-					"resourceName": "giveoxygen09896bf9",
+					"resourceName": "giveoxygene2d3455d",
 					"attributes": [
 						"UserPoolId",
 						"AppClientIDWeb",
@@ -23,14 +23,14 @@
 		}
 	},
 	"function": {
-		"AdminQueriesfe4e8715": {
+		"AdminQueries5c076c4d": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true,
 			"dependsOn": [
 				{
 					"category": "auth",
-					"resourceName": "giveoxygen09896bf9",
+					"resourceName": "giveoxygene2d3455d",
 					"attributes": [
 						"UserPoolId"
 					]
@@ -45,14 +45,14 @@
 			"dependsOn": [
 				{
 					"category": "auth",
-					"resourceName": "giveoxygen09896bf9",
+					"resourceName": "giveoxygene2d3455d",
 					"attributes": [
 						"UserPoolId"
 					]
 				},
 				{
 					"category": "function",
-					"resourceName": "AdminQueriesfe4e8715",
+					"resourceName": "AdminQueries5c076c4d",
 					"attributes": [
 						"Arn",
 						"Name"
@@ -69,7 +69,7 @@
 					"defaultAuthentication": {
 						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
 						"userPoolConfig": {
-							"userPoolId": "authgiveoxygen09896bf9"
+							"userPoolId": "authgiveoxygene2d3455d"
 						}
 					}
 				}

@@ -1,30 +1,111 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getUser = /* GraphQL */ `
-  query GetUser($email: String!) {
-    getUser(email: $email) {
+export const getHospital = /* GraphQL */ `
+  query GetHospital($id: ID!) {
+    getHospital(id: $id) {
+      id
+      name
+      description
+      email
+      phoneNumber
+      address {
+        street
+        street2
+        city
+        state
+        zipCode
+      }
+      createdAt
+      updatedAt
+      admins {
+        items {
+          email
+          firstName
+          lastName
+          phoneNumber
+          createdAt
+          updatedAt
+          hospitalId
+          jobTitle
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const listHospitals = /* GraphQL */ `
+  query ListHospitals(
+    $filter: ModelHospitalFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listHospitals(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        description
+        email
+        phoneNumber
+        address {
+          street
+          street2
+          city
+          state
+          zipCode
+        }
+        createdAt
+        updatedAt
+        admins {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getHospitalAdmin = /* GraphQL */ `
+  query GetHospitalAdmin($email: String!) {
+    getHospitalAdmin(email: $email) {
       email
       firstName
       lastName
       phoneNumber
       createdAt
       updatedAt
-      isEmailVerified
-      isActive
-      role
+      hospitalId
+      hospital {
+        id
+        name
+        description
+        email
+        phoneNumber
+        address {
+          street
+          street2
+          city
+          state
+          zipCode
+        }
+        createdAt
+        updatedAt
+        admins {
+          nextToken
+        }
+      }
+      jobTitle
     }
   }
 `;
-export const listUsers = /* GraphQL */ `
-  query ListUsers(
+export const listHospitalAdmins = /* GraphQL */ `
+  query ListHospitalAdmins(
     $email: String
-    $filter: ModelUserFilterInput
+    $filter: ModelHospitalAdminFilterInput
     $limit: Int
     $nextToken: String
     $sortDirection: ModelSortDirection
   ) {
-    listUsers(
+    listHospitalAdmins(
       email: $email
       filter: $filter
       limit: $limit
@@ -38,9 +119,112 @@ export const listUsers = /* GraphQL */ `
         phoneNumber
         createdAt
         updatedAt
-        isEmailVerified
-        isActive
-        role
+        hospitalId
+        hospital {
+          id
+          name
+          description
+          email
+          phoneNumber
+          createdAt
+          updatedAt
+        }
+        jobTitle
+      }
+      nextToken
+    }
+  }
+`;
+export const getMaker = /* GraphQL */ `
+  query GetMaker($email: String!) {
+    getMaker(email: $email) {
+      email
+      firstName
+      lastName
+      phoneNumber
+      createdAt
+      updatedAt
+      jobTitle
+      address {
+        street
+        street2
+        city
+        state
+        zipCode
+      }
+    }
+  }
+`;
+export const listMakers = /* GraphQL */ `
+  query ListMakers(
+    $email: String
+    $filter: ModelMakerFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listMakers(
+      email: $email
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        email
+        firstName
+        lastName
+        phoneNumber
+        createdAt
+        updatedAt
+        jobTitle
+        address {
+          street
+          street2
+          city
+          state
+          zipCode
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getAdminsByHospitalByCreatedAt = /* GraphQL */ `
+  query GetAdminsByHospitalByCreatedAt(
+    $hospitalId: ID
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelHospitalAdminFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getAdminsByHospitalByCreatedAt(
+      hospitalId: $hospitalId
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        email
+        firstName
+        lastName
+        phoneNumber
+        createdAt
+        updatedAt
+        hospitalId
+        hospital {
+          id
+          name
+          description
+          email
+          phoneNumber
+          createdAt
+          updatedAt
+        }
+        jobTitle
       }
       nextToken
     }

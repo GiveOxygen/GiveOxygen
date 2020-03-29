@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "giveoxygen09896bf9_identitypool_09896bf9",
+    "identityPoolName": "giveoxygene2d3455d_identitypool_e2d3455d",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "giveox09896bf9",
-    "userPoolName": "giveoxygen09896bf9_userpool_09896bf9",
+    "resourceNameTruncated": "giveoxe2d3455d",
+    "userPoolName": "giveoxygene2d3455d_userpool_e2d3455d",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -12,8 +12,8 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Your verification code",
-    "emailVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code for GiveOxygen",
+    "emailVerificationMessage": "Your verification code for GiveOxygen is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
@@ -31,9 +31,9 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "giveox09896bf9_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "giveoxe2d3455d_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "giveoxygen09896bf9",
+    "resourceName": "giveoxygene2d3455d",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -53,9 +53,6 @@
     ],
     "triggers": "{}",
     "userPoolGroupList": [
-        "Users",
-        "Suppliers",
-        "HospitalAdmins",
         "Admins"
     ],
     "parentStack": {

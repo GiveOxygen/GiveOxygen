@@ -9,6 +9,8 @@ import hospitalMetadata from './Hospital.metadata';
 import makerMetadata from './Maker.metadata';
 
 import BackNavigatorButton from '../components/BackNavigatorButton';
+import request from '../utils/request';
+import { createHospitalAdmin, createHospital, createMaker } from '../../graphql/mutations';
 
 const CustomSignUp = ({ onStateChange, authState }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,11 +38,46 @@ const CustomSignUp = ({ onStateChange, authState }) => {
           'email': email,
           'phone_number': `+1${phoneNumber}`,
           'custom:role': role,
-          'custom:details': JSON.stringify(details),
+          // 'custom:details': JSON.stringify(details),
         },
       };
       console.log(info);
       await Auth.signUp(info);
+
+      if (role === 'hospitalAdmin') {
+        // if id exists, do not create one
+        const { data: { createHospital: hospitalData } } = await request(createHospital, {
+          input: {
+            name: details.hospitalName,
+            email: details.hospitalEmail,
+            phoneNumber: details.hospitalPhoneNumber,
+            address: details.hospitalAddress,
+          },
+        });
+        console.log(hospitalData);
+        await request(createHospitalAdmin, {
+          input: {
+            email,
+            firstName,
+            lastName,
+            phoneNumber,
+            jobTitle: details.jobTitle,
+            hospitalId: hospitalData.id,
+          },
+        });
+      } else {
+        await request(createMaker, {
+          input: {
+            email,
+            firstName,
+            lastName,
+            phoneNumber,
+            jobTitle: details.jobTitle,
+            address: details.address,
+          },
+        });
+      }
+
       onStateChange('confirmSignUp', { email, password });
     } catch (e) {
       global.logger.error(e);
