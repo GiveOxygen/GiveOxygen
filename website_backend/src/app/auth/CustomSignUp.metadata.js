@@ -34,7 +34,7 @@ export default {
     formOptions: [
       { label: 'Hospital Admin', value: 'hospitalAdmin' },
       { label: 'Maker', value: 'maker' },
-      { label: 'Supplier', value: 'supplier' },
+      // { label: 'Supplier', value: 'supplier' },
     ],
   }],
 };

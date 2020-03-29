@@ -1,26 +1,51 @@
-type User 
+type HospitalAdmin 
   @model
   @key(fields: ["email"])
+  @key(name: "byHospitalByCreatedAt", fields: ["hospitalId", "createdAt"], queryField: "getAdminsByHospitalByCreatedAt")
   @auth(rules: [
     {allow: private, operations: [read, create]},
-    # {allow: owner, ownerField: "email", operations: [read]},
+    {allow: owner, ownerField: "email", operations: [read, update]},
     {allow: groups, groups: ["Admins"]},
   ])
 {
   email: String!
-  firstName: String
-  lastName: String
+  firstName: String!
+  lastName: String!
+  phoneNumber: String
+
+  createdAt: AWSDateTime! @auto
+  updatedAt: AWSDateTime! @auto
+
+  hospitalId: ID!
+  hospital: Hospital @connection(fields:["hospitalId"])
+
+  jobTitle: String!
+}
+
+type Maker
+  @model
+  @key(fields: ["email"])
+  @auth(rules: [
+    {allow: private, operations: [read, create]},
+    {allow: owner, ownerField: "email", operations: [read, update]},
+    {allow: groups, groups: ["Admins"]},
+  ])
+{
+  email: String!
+  firstName: String!
+  lastName: String!
   phoneNumber: String
   createdAt: AWSDateTime! @auto
   updatedAt: AWSDateTime! @auto
   
-  isEmailVerified: Int!
-  isActive: Int!
-  role: RoleType!
+  jobTitle: String!
+  address: Address!
 }
 
-enum RoleType { 
-  hospitalAdmin
-  individual
-  supplier
+type Address {
+  street: String!
+  street2: String
+  city: String!
+  state: String!
+  zipCode: String!
 }

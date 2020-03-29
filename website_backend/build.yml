@@ -1,0 +1,38 @@
+version: 0.1
+env:
+  variables:
+    NODE_PATH: website_backend/node_modules
+backend:
+  phases:
+    build:
+      commands:
+        - '# Execute Amplify CLI with the helper script'
+        - cd website_backend/
+        - ls -ll
+        - echo ${NODE_PATH}
+        - yarn install
+        - amplify -v
+        - npm install -g @aws-amplify/cli
+        - amplify -v
+        - export NODE_PATH=./node_modules
+        - amplifyPush --simple
+  cache:
+    paths:
+      - website_backend/node_modules/**/*
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - cd website_backend/
+        - yarn install
+    build:
+      commands:
+        - cd website_backend/ 
+        - yarn run build
+  artifacts:
+    baseDirectory: website_backend/build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - website_backend/node_modules/**/*

@@ -5,14 +5,27 @@ import { Container } from '@material-ui/core';
 import DetailForm from 'react-material-final-form';
 
 import metadata from './CustomSignUp.metadata';
+import hospitalMetadata from './Hospital.metadata';
+import makerMetadata from './Maker.metadata';
+
 import BackNavigatorButton from '../components/BackNavigatorButton';
 
 const CustomSignUp = ({ onStateChange, authState }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [data, setData] = useState({});
+  const [profile, setProfile] = useState({});
+  const [mode, setMode] = useState('profile');
 
-  const submit = async ({ email, password, firstName, lastName, phoneNumber, role }) => {
+  const next = async (result) => {
+    setProfile(result);
+    setMode(result.role);
+    // search hosital name first
+  };
+
+  const register = async (details) => {
     setIsSubmitting(true);
+
+    const { email, password, firstName, lastName, phoneNumber, role } = profile;
     try {
       const info = {
         username: email,
@@ -23,7 +36,7 @@ const CustomSignUp = ({ onStateChange, authState }) => {
           'email': email,
           'phone_number': `+1${phoneNumber}`,
           'custom:role': role,
-          // 'custom:details': JSON.stringify(details),
+          'custom:details': JSON.stringify(details),
         },
       };
       console.log(info);
@@ -57,14 +70,39 @@ const CustomSignUp = ({ onStateChange, authState }) => {
         title={'Back to Sign In'}
         onClick={() => onStateChange('signIn')}
       />
-      <DetailForm
-        title={'Sign Up'}
-        metadata={metadata}
-        data={data}
-        isLoading={isSubmitting}
-        onSubmit={submit}
-        submitButtonText="Register"
-      />
+      {
+        mode === 'profile' &&
+        <DetailForm
+          title={'Sign Up'}
+          metadata={metadata}
+          data={data}
+          isLoading={isSubmitting}
+          onSubmit={next}
+          submitButtonText="Next"
+        />
+      }
+      {
+        mode === 'hospitalAdmin' &&
+        <DetailForm
+          title={'Hospital'}
+          metadata={hospitalMetadata}
+          data={{}}
+          isLoading={isSubmitting}
+          onSubmit={register}
+          submitButtonText="Register"
+        />
+      }
+      {
+        mode === 'maker' &&
+        <DetailForm
+          title={'Maker'}
+          metadata={makerMetadata}
+          data={{}}
+          isLoading={isSubmitting}
+          onSubmit={register}
+          submitButtonText="Register"
+        />
+      }
     </Container>
   );
 };
