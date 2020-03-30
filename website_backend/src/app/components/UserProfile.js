@@ -6,9 +6,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import request from '../utils/request';
+import request from '../../utils/request';
 import { getHospitalAdmin, getMaker } from '../../graphql/queries';
-import { createHospitalAdmin, creatM } from '../../graphql/mutations';
+import { createHospitalAdmin, createHospital, createMaker } from '../../graphql/mutations';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,28 +31,84 @@ export default () => {
 
   useEffect(() => {
     (async () => {
-      // const res = await Auth.currentAuthenticatedUser();
-      // console.log(res);
-      // // const groups = res.signInUserSession.accessToken.payload['cognito:groups'];
-      // const { data: { getUser: result } } = await request(getUser, { email: res.attributes.email });
-      // if (result) {
-      //   setUser(result);
-      //   return;
-      // }
+      const res = await Auth.currentAuthenticatedUser();
+      console.log(res);
+      const {
+        'custom:role': role,
+        'custom:details': details,
+        email,
+        family_name: lastName,
+        given_name: firstName,
+        phone_number: phoneNumber,
+      } = res.attributes;
 
-      // // add user
-      // const { data: { createUser: savedResult } } = await request(createUser, {
-      //   input: {
-      //     email: res.attributes.email,
-      //     firstName: res.attributes.given_name,
-      //     lastName: res.attributes.family_name,
-      //     phoneNumber: res.attributes.phone_number,
-      //     isEmailVerified: res.attributes.email_verified ? 1 : 0,
-      //     isActive: 1,
-      //     role: res.attributes['custom:role'],
-      //   },
-      // });
-      // setUser(savedResult);
+      if (role === 'hospitalAdmin') {
+        // const groups = res.signInUserSession.accessToken.payload['cognito:groups'];
+        const { data: { getHospitalAdmin: result } } = await request(getHospitalAdmin, { email });
+        if (result) {
+          setUser(result);
+        } else {
+          const {
+            hospitalName,
+            hospitalEmail,
+            hospitalPhoneNumber,
+            hospitalAddress,
+            jobTitle,
+            coordinates,
+          } = JSON.parse(details);
+          const { data: { createHospital: hospitalData } } = await request(createHospital, {
+            input: {
+              name: hospitalName,
+              email: hospitalEmail,
+              phoneNumber: hospitalPhoneNumber,
+              address: hospitalAddress,
+              coordinates: {
+                latitude: coordinates[0],
+                longitude: coordinates[1],
+              },
+            },
+          });
+          console.log(hospitalData);
+          const { data: { createHospitalAdmin: createHospitalAdminResult } } = await request(createHospitalAdmin, {
+            input: {
+              email,
+              firstName,
+              lastName,
+              phoneNumber,
+              jobTitle: jobTitle,
+              hospitalId: hospitalData.id,
+            },
+          });
+          setUser(createHospitalAdminResult);
+        }
+      } else
+      if (role === 'maker') {
+        const { data: { getMaker: result } } = await request(getMaker, { email });
+        if (result) {
+          setUser(result);
+        } else {
+          const {
+            address,
+            jobTitle,
+            coordinates,
+          } = JSON.parse(details);
+          const { data: { createMaker: createMakerResult } } = await request(createMaker, {
+            input: {
+              email,
+              firstName,
+              lastName,
+              phoneNumber,
+              jobTitle,
+              address,
+              coordinates: {
+                latitude: coordinates[0],
+                longitude: coordinates[1],
+              },
+            },
+          });
+          setUser(createMakerResult);
+        }
+      }
     })();
   }, []);
 

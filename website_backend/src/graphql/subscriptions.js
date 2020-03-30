@@ -7,8 +7,11 @@ export const onCreateHospital = /* GraphQL */ `
       id
       name
       description
+      note
       email
       phoneNumber
+      createdAt
+      updatedAt
       address {
         street
         street2
@@ -16,8 +19,10 @@ export const onCreateHospital = /* GraphQL */ `
         state
         zipCode
       }
-      createdAt
-      updatedAt
+      coordinates {
+        latitude
+        longitude
+      }
       admins {
         items {
           email
@@ -40,8 +45,11 @@ export const onUpdateHospital = /* GraphQL */ `
       id
       name
       description
+      note
       email
       phoneNumber
+      createdAt
+      updatedAt
       address {
         street
         street2
@@ -49,8 +57,10 @@ export const onUpdateHospital = /* GraphQL */ `
         state
         zipCode
       }
-      createdAt
-      updatedAt
+      coordinates {
+        latitude
+        longitude
+      }
       admins {
         items {
           email
@@ -73,8 +83,11 @@ export const onDeleteHospital = /* GraphQL */ `
       id
       name
       description
+      note
       email
       phoneNumber
+      createdAt
+      updatedAt
       address {
         street
         street2
@@ -82,8 +95,10 @@ export const onDeleteHospital = /* GraphQL */ `
         state
         zipCode
       }
-      createdAt
-      updatedAt
+      coordinates {
+        latitude
+        longitude
+      }
       admins {
         items {
           email
@@ -110,12 +125,16 @@ export const onCreateHospitalAdmin = /* GraphQL */ `
       createdAt
       updatedAt
       hospitalId
+      jobTitle
       hospital {
         id
         name
         description
+        note
         email
         phoneNumber
+        createdAt
+        updatedAt
         address {
           street
           street2
@@ -123,13 +142,14 @@ export const onCreateHospitalAdmin = /* GraphQL */ `
           state
           zipCode
         }
-        createdAt
-        updatedAt
+        coordinates {
+          latitude
+          longitude
+        }
         admins {
           nextToken
         }
       }
-      jobTitle
     }
   }
 `;
@@ -143,12 +163,16 @@ export const onUpdateHospitalAdmin = /* GraphQL */ `
       createdAt
       updatedAt
       hospitalId
+      jobTitle
       hospital {
         id
         name
         description
+        note
         email
         phoneNumber
+        createdAt
+        updatedAt
         address {
           street
           street2
@@ -156,13 +180,14 @@ export const onUpdateHospitalAdmin = /* GraphQL */ `
           state
           zipCode
         }
-        createdAt
-        updatedAt
+        coordinates {
+          latitude
+          longitude
+        }
         admins {
           nextToken
         }
       }
-      jobTitle
     }
   }
 `;
@@ -176,12 +201,16 @@ export const onDeleteHospitalAdmin = /* GraphQL */ `
       createdAt
       updatedAt
       hospitalId
+      jobTitle
       hospital {
         id
         name
         description
+        note
         email
         phoneNumber
+        createdAt
+        updatedAt
         address {
           street
           street2
@@ -189,13 +218,14 @@ export const onDeleteHospitalAdmin = /* GraphQL */ `
           state
           zipCode
         }
-        createdAt
-        updatedAt
+        coordinates {
+          latitude
+          longitude
+        }
         admins {
           nextToken
         }
       }
-      jobTitle
     }
   }
 `;
@@ -215,6 +245,10 @@ export const onCreateMaker = /* GraphQL */ `
         city
         state
         zipCode
+      }
+      coordinates {
+        latitude
+        longitude
       }
     }
   }
@@ -236,6 +270,10 @@ export const onUpdateMaker = /* GraphQL */ `
         state
         zipCode
       }
+      coordinates {
+        latitude
+        longitude
+      }
     }
   }
 `;
@@ -255,6 +293,10 @@ export const onDeleteMaker = /* GraphQL */ `
         city
         state
         zipCode
+      }
+      coordinates {
+        latitude
+        longitude
       }
     }
   }

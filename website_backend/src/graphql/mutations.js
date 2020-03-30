@@ -10,8 +10,11 @@ export const createHospital = /* GraphQL */ `
       id
       name
       description
+      note
       email
       phoneNumber
+      createdAt
+      updatedAt
       address {
         street
         street2
@@ -19,8 +22,10 @@ export const createHospital = /* GraphQL */ `
         state
         zipCode
       }
-      createdAt
-      updatedAt
+      coordinates {
+        latitude
+        longitude
+      }
       admins {
         items {
           email
@@ -46,8 +51,11 @@ export const updateHospital = /* GraphQL */ `
       id
       name
       description
+      note
       email
       phoneNumber
+      createdAt
+      updatedAt
       address {
         street
         street2
@@ -55,8 +63,10 @@ export const updateHospital = /* GraphQL */ `
         state
         zipCode
       }
-      createdAt
-      updatedAt
+      coordinates {
+        latitude
+        longitude
+      }
       admins {
         items {
           email
@@ -82,8 +92,11 @@ export const deleteHospital = /* GraphQL */ `
       id
       name
       description
+      note
       email
       phoneNumber
+      createdAt
+      updatedAt
       address {
         street
         street2
@@ -91,8 +104,10 @@ export const deleteHospital = /* GraphQL */ `
         state
         zipCode
       }
-      createdAt
-      updatedAt
+      coordinates {
+        latitude
+        longitude
+      }
       admins {
         items {
           email
@@ -122,12 +137,16 @@ export const createHospitalAdmin = /* GraphQL */ `
       createdAt
       updatedAt
       hospitalId
+      jobTitle
       hospital {
         id
         name
         description
+        note
         email
         phoneNumber
+        createdAt
+        updatedAt
         address {
           street
           street2
@@ -135,13 +154,14 @@ export const createHospitalAdmin = /* GraphQL */ `
           state
           zipCode
         }
-        createdAt
-        updatedAt
+        coordinates {
+          latitude
+          longitude
+        }
         admins {
           nextToken
         }
       }
-      jobTitle
     }
   }
 `;
@@ -158,12 +178,16 @@ export const updateHospitalAdmin = /* GraphQL */ `
       createdAt
       updatedAt
       hospitalId
+      jobTitle
       hospital {
         id
         name
         description
+        note
         email
         phoneNumber
+        createdAt
+        updatedAt
         address {
           street
           street2
@@ -171,13 +195,14 @@ export const updateHospitalAdmin = /* GraphQL */ `
           state
           zipCode
         }
-        createdAt
-        updatedAt
+        coordinates {
+          latitude
+          longitude
+        }
         admins {
           nextToken
         }
       }
-      jobTitle
     }
   }
 `;
@@ -194,12 +219,16 @@ export const deleteHospitalAdmin = /* GraphQL */ `
       createdAt
       updatedAt
       hospitalId
+      jobTitle
       hospital {
         id
         name
         description
+        note
         email
         phoneNumber
+        createdAt
+        updatedAt
         address {
           street
           street2
@@ -207,13 +236,14 @@ export const deleteHospitalAdmin = /* GraphQL */ `
           state
           zipCode
         }
-        createdAt
-        updatedAt
+        coordinates {
+          latitude
+          longitude
+        }
         admins {
           nextToken
         }
       }
-      jobTitle
     }
   }
 `;
@@ -236,6 +266,10 @@ export const createMaker = /* GraphQL */ `
         city
         state
         zipCode
+      }
+      coordinates {
+        latitude
+        longitude
       }
     }
   }
@@ -260,6 +294,10 @@ export const updateMaker = /* GraphQL */ `
         state
         zipCode
       }
+      coordinates {
+        latitude
+        longitude
+      }
     }
   }
 `;
@@ -282,6 +320,10 @@ export const deleteMaker = /* GraphQL */ `
         city
         state
         zipCode
+      }
+      coordinates {
+        latitude
+        longitude
       }
     }
   }

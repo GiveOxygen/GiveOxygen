@@ -9,7 +9,7 @@ import hospitalMetadata from './Hospital.metadata';
 import makerMetadata from './Maker.metadata';
 
 import BackNavigatorButton from '../components/BackNavigatorButton';
-import request from '../utils/request';
+import request from '../../utils/request';
 import { createHospitalAdmin, createHospital, createMaker } from '../../graphql/mutations';
 
 const CustomSignUp = ({ onStateChange, authState }) => {
@@ -38,46 +38,11 @@ const CustomSignUp = ({ onStateChange, authState }) => {
           'email': email,
           'phone_number': `+1${phoneNumber}`,
           'custom:role': role,
-          // 'custom:details': JSON.stringify(details),
+          'custom:details': JSON.stringify(details),
         },
       };
       console.log(info);
       await Auth.signUp(info);
-
-      if (role === 'hospitalAdmin') {
-        // if id exists, do not create one
-        const { data: { createHospital: hospitalData } } = await request(createHospital, {
-          input: {
-            name: details.hospitalName,
-            email: details.hospitalEmail,
-            phoneNumber: details.hospitalPhoneNumber,
-            address: details.hospitalAddress,
-          },
-        });
-        console.log(hospitalData);
-        await request(createHospitalAdmin, {
-          input: {
-            email,
-            firstName,
-            lastName,
-            phoneNumber,
-            jobTitle: details.jobTitle,
-            hospitalId: hospitalData.id,
-          },
-        });
-      } else {
-        await request(createMaker, {
-          input: {
-            email,
-            firstName,
-            lastName,
-            phoneNumber,
-            jobTitle: details.jobTitle,
-            address: details.address,
-          },
-        });
-      }
-
       onStateChange('confirmSignUp', { email, password });
     } catch (e) {
       global.logger.error(e);
@@ -89,12 +54,29 @@ const CustomSignUp = ({ onStateChange, authState }) => {
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
       setData({
-        email: 'jhuang@transurban.tech',
-        password: 'password',
-        firstName: 'John',
-        lastName: 'Huang',
-        phoneNumber: '6263212768',
-        // role: 'maker',
+        profile: {
+          email: 'jhuang@transurban.tech',
+          password: 'password',
+          firstName: 'John',
+          lastName: 'Huang',
+          phoneNumber: '6263212768',
+          // role: 'maker',
+        },
+        hospitalAdmin: {
+          jobTitle: 'Doctor',
+          hospitalName: 'Hoag',
+          hospitalEmail: 'info@hoag.org',
+          hospitalPhoneNumber: '6263212768',
+          hospitalAddress: {
+            street: '123 Sand canyon ave',
+            city: 'Irvine',
+            state: 'CA',
+            zipCode: '9260',
+          },
+        },
+        maker: {
+
+        },
       });
     }
   }, []);
@@ -112,7 +94,7 @@ const CustomSignUp = ({ onStateChange, authState }) => {
         <DetailForm
           title={'Sign Up'}
           metadata={metadata}
-          data={data}
+          data={data.profile}
           isLoading={isSubmitting}
           onSubmit={next}
           submitButtonText="Next"
@@ -123,7 +105,7 @@ const CustomSignUp = ({ onStateChange, authState }) => {
         <DetailForm
           title={'Hospital'}
           metadata={hospitalMetadata}
-          data={{}}
+          data={data.hospitalAdmin}
           isLoading={isSubmitting}
           onSubmit={register}
           submitButtonText="Register"
@@ -134,7 +116,7 @@ const CustomSignUp = ({ onStateChange, authState }) => {
         <DetailForm
           title={'Maker'}
           metadata={makerMetadata}
-          data={{}}
+          data={data.maker}
           isLoading={isSubmitting}
           onSubmit={register}
           submitButtonText="Register"

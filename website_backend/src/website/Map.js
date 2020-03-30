@@ -10,6 +10,7 @@ import L from 'leaflet';
 // import { GoogleLayer } from 'react-leaflet-google';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
+import request from '../utils/request';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -24,6 +25,44 @@ L.Icon.Default.mergeOptions({
 // let map;
 const Map = (props) => {
   const [currentPosition, setCurrentPosition] = useState([40.7128, 74.0060]); // ny
+  const [hospitals, setHospitals] = useState([]);
+
+  const getHospitals = async () => {
+    const { data: { listHospitals: { items: result } } } = await request(/* GraphQL */ `
+    query ListHospitals(
+      $filter: ModelHospitalFilterInput
+      $limit: Int
+      $nextToken: String
+    ) {
+      listHospitals(filter: $filter, limit: $limit, nextToken: $nextToken) {
+        items {
+          id
+          name
+          description
+          email
+          phoneNumber
+          address {
+            street
+            street2
+            city
+            state
+            zipCode
+          }
+          coordinates {
+            latitude
+            longitude
+          }
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  `, null, 'API_KEY');
+    console.log(result);
+    setHospitals(result);
+  };
+
   useEffect(() => {
     const { geolocation } = navigator;
     geolocation.getCurrentPosition(({ coords }) => {
@@ -32,6 +71,10 @@ const Map = (props) => {
         setCurrentPosition([coords.latitude, coords.longitude]);
       }
     });
+
+    (async () => {
+      await getHospitals();
+    })();
   }, []);
   return (
     <LeafletMap

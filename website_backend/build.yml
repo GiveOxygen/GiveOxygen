@@ -4,12 +4,13 @@ backend:
     preBuild:
       commands:
         - cd website_backend/
-        - yarn install
+        - npm install graphql-auto-transformer
         - npm install -g @aws-amplify/cli@4.11.0
         - cd ..
     build:
       commands:
         - '# Execute Amplify CLI with the helper script'
+        - cd website_backend/
         - amplify -v
         - export NODE_PATH=./node_modules
         - amplifyPush --simple

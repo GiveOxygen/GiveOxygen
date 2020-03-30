@@ -16,7 +16,10 @@
                 "giveoxygene2d3455d": {}
             },
             "function": {
-                "AdminQueries5c076c4d": {}
+                "AdminQueries5c076c4d": {},
+                "giveoxygene2d3455dPostConfirmation": {
+                    "GROUP": "HospitalAdmins"
+                }
             }
         }
     },

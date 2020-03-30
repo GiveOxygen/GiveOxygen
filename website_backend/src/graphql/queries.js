@@ -1,69 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getHospital = /* GraphQL */ `
-  query GetHospital($id: ID!) {
-    getHospital(id: $id) {
-      id
-      name
-      description
-      email
-      phoneNumber
-      address {
-        street
-        street2
-        city
-        state
-        zipCode
-      }
-      createdAt
-      updatedAt
-      admins {
-        items {
-          email
-          firstName
-          lastName
-          phoneNumber
-          createdAt
-          updatedAt
-          hospitalId
-          jobTitle
-        }
-        nextToken
-      }
-    }
-  }
-`;
-export const listHospitals = /* GraphQL */ `
-  query ListHospitals(
-    $filter: ModelHospitalFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listHospitals(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        description
-        email
-        phoneNumber
-        address {
-          street
-          street2
-          city
-          state
-          zipCode
-        }
-        createdAt
-        updatedAt
-        admins {
-          nextToken
-        }
-      }
-      nextToken
-    }
-  }
-`;
 export const getHospitalAdmin = /* GraphQL */ `
   query GetHospitalAdmin($email: String!) {
     getHospitalAdmin(email: $email) {
@@ -74,12 +11,16 @@ export const getHospitalAdmin = /* GraphQL */ `
       createdAt
       updatedAt
       hospitalId
+      jobTitle
       hospital {
         id
         name
         description
+        note
         email
         phoneNumber
+        createdAt
+        updatedAt
         address {
           street
           street2
@@ -87,13 +28,14 @@ export const getHospitalAdmin = /* GraphQL */ `
           state
           zipCode
         }
-        createdAt
-        updatedAt
+        coordinates {
+          latitude
+          longitude
+        }
         admins {
           nextToken
         }
       }
-      jobTitle
     }
   }
 `;
@@ -120,16 +62,17 @@ export const listHospitalAdmins = /* GraphQL */ `
         createdAt
         updatedAt
         hospitalId
+        jobTitle
         hospital {
           id
           name
           description
+          note
           email
           phoneNumber
           createdAt
           updatedAt
         }
-        jobTitle
       }
       nextToken
     }
@@ -151,6 +94,10 @@ export const getMaker = /* GraphQL */ `
         city
         state
         zipCode
+      }
+      coordinates {
+        latitude
+        longitude
       }
     }
   }
@@ -185,6 +132,10 @@ export const listMakers = /* GraphQL */ `
           state
           zipCode
         }
+        coordinates {
+          latitude
+          longitude
+        }
       }
       nextToken
     }
@@ -215,18 +166,92 @@ export const getAdminsByHospitalByCreatedAt = /* GraphQL */ `
         createdAt
         updatedAt
         hospitalId
+        jobTitle
         hospital {
           id
           name
           description
+          note
           email
           phoneNumber
           createdAt
           updatedAt
         }
-        jobTitle
       }
       nextToken
+    }
+  }
+`;
+export const listHospitals = /* GraphQL */ `
+  query ListHospitals(
+    $filter: ModelHospitalFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listHospitals(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        description
+        note
+        email
+        phoneNumber
+        createdAt
+        updatedAt
+        address {
+          street
+          street2
+          city
+          state
+          zipCode
+        }
+        coordinates {
+          latitude
+          longitude
+        }
+        admins {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getHospital = /* GraphQL */ `
+  query GetHospital($id: ID!) {
+    getHospital(id: $id) {
+      id
+      name
+      description
+      note
+      email
+      phoneNumber
+      createdAt
+      updatedAt
+      address {
+        street
+        street2
+        city
+        state
+        zipCode
+      }
+      coordinates {
+        latitude
+        longitude
+      }
+      admins {
+        items {
+          email
+          firstName
+          lastName
+          phoneNumber
+          createdAt
+          updatedAt
+          hospitalId
+          jobTitle
+        }
+        nextToken
+      }
     }
   }
 `;

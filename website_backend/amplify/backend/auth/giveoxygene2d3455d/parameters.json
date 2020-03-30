@@ -51,17 +51,31 @@
     "usernameAttributes": [
         "email"
     ],
-    "triggers": "{}",
+    "triggers": "{\"PostConfirmation\":[\"add-to-group\"]}",
     "userPoolGroupList": [
-        "Admins"
+        "Admins",
+        "HospitalAdmins",
+        "Makers"
     ],
     "parentStack": {
         "Ref": "AWS::StackId"
     },
-    "permissions": [],
-    "dependsOn": [],
+    "permissions": [
+        "{\"policyName\":\"AddToGroupCognito\",\"trigger\":\"PostConfirmation\",\"effect\":\"Allow\",\"actions\":[\"cognito-idp:AdminAddUserToGroup\",\"cognito-idp:GetGroup\",\"cognito-idp:CreateGroup\"],\"resource\":{\"paramType\":\"!GetAtt\",\"keys\":[\"UserPool\",\"Arn\"]}}"
+    ],
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "giveoxygene2d3455dPostConfirmation",
+            "triggerProvider": "Cognito",
+            "attributes": [
+                "Arn",
+                "Name"
+            ]
+        }
+    ],
     "thirdPartyAuth": false,
-    "userPoolGroups": true,
+    "userPoolGroups": false,
     "adminQueries": true,
     "hostedUI": false,
     "adminQueryGroup": "Admins"
