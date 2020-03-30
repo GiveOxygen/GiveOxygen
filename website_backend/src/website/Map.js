@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import {
   Map as LeafletMap,
   Marker,
@@ -11,6 +11,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
 import request from '../utils/request';
+import SearchHospital from '../components/SearchHospital';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -28,7 +29,7 @@ const Map = (props) => {
   const [hospitals, setHospitals] = useState([]);
 
   const getHospitals = async () => {
-    const { data: { listHospitals: { items: result } } } = await request(/* GraphQL */ `
+    const { data: { listHospitals: { items: result } } } = await request( /* GraphQL */ `
     query ListHospitals(
       $filter: ModelHospitalFilterInput
       $limit: Int
@@ -67,7 +68,7 @@ const Map = (props) => {
     const { geolocation } = navigator;
     geolocation.getCurrentPosition(({ coords }) => {
       if (coords) {
-        // console.log(coords);
+        console.log(coords);
         setCurrentPosition([coords.latitude, coords.longitude]);
       }
     });
@@ -77,33 +78,27 @@ const Map = (props) => {
     })();
   }, []);
   return (
-    <LeafletMap
-      center={currentPosition}
-      // bounds={bounds}
-      boundsOptions={{ padding: 16 }}
-      zoom={12}
-      // ref={(ref) => map = ref}
-    >
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution=""
-      />
-      {/* <LayersControl position='topright'>
+    <Fragment>
+      <SearchHospital
+        addNewIfNotExist={false}
+        onUpdate={(selected)=>{
+          if (selected) {
+            global.logger.debug(selected);
+            setCurrentPosition([selected.coordinates.latitude, selected.coordinates.longitude]);  
+          }
+        }}/>
+      <LeafletMap
+        center={currentPosition}
+        // bounds={bounds}
+        boundsOptions={{ padding: 16 }}
+        zoom={12}
+        // ref={(ref) => map = ref}
+      >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution=""
-          maxNativeZoom={19}
-          minZoom={10}
-          maxZoom={19}
         />
-        {
-          ['ROARDMAP', 'TERRAIN', 'SATELLITE', 'HYBRID'].map((type, index)=>(
-            <BaseLayer key={index} checked={index===0} name={`Google Maps - ${type}`}>
-              <GoogleLayer googlekey={getConfig('googlekey')}  maptype={type}/>
-            </BaseLayer>
-          ))
-        }
-        <BaseLayer name="Open Street Map">
+        {/* <LayersControl position='topright'>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution=""
@@ -111,14 +106,30 @@ const Map = (props) => {
             minZoom={10}
             maxZoom={19}
           />
-        </BaseLayer>
-      </LayersControl> */}
-      <Marker position={currentPosition}>
-        <Popup>
-          I am here!
-        </Popup>
-      </Marker>
-    </LeafletMap>
+          {
+            ['ROARDMAP', 'TERRAIN', 'SATELLITE', 'HYBRID'].map((type, index)=>(
+              <BaseLayer key={index} checked={index===0} name={`Google Maps - ${type}`}>
+                <GoogleLayer googlekey={getConfig('googlekey')}  maptype={type}/>
+              </BaseLayer>
+            ))
+          }
+          <BaseLayer name="Open Street Map">
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution=""
+              maxNativeZoom={19}
+              minZoom={10}
+              maxZoom={19}
+            />
+          </BaseLayer>
+        </LayersControl> */}
+        <Marker position={currentPosition}>
+          <Popup>
+            I am here!
+          </Popup>
+        </Marker>
+      </LeafletMap>
+    </Fragment>
   );
 };
 
