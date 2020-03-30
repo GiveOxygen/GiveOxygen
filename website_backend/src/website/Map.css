@@ -1,0 +1,9 @@
+/* React Leaflet */
+.leaflet-container {
+    min-height: 600px;
+    width: 100%;
+}
+
+.leaflet-control-attribution {
+    display: none;
+}

@@ -1,0 +1,57 @@
+type HospitalAdmin 
+  @model
+  @key(fields: ["email"])
+  @key(name: "byHospitalByCreatedAt", fields: ["hospitalId", "createdAt"], queryField: "getAdminsByHospitalByCreatedAt")
+  @auth(rules: [
+    {allow: private, operations: [read, create]},
+    {allow: owner, ownerField: "email", operations: [read, update]},
+    {allow: groups, groups: ["Admins"]},
+  ])
+{
+  email: String!
+  firstName: String!
+  lastName: String!
+  phoneNumber: String
+
+  createdAt: AWSDateTime! @auto
+  updatedAt: AWSDateTime! @auto
+
+  hospitalId: ID!
+  hospital: Hospital @connection(fields:["hospitalId"])
+
+  jobTitle: String!
+}
+
+type Maker
+  @model
+  @key(fields: ["email"])
+  @auth(rules: [
+    {allow: private, operations: [read, create]},
+    {allow: owner, ownerField: "email", operations: [read, update]},
+    {allow: groups, groups: ["Admins"]},
+  ])
+{
+  email: String!
+  firstName: String!
+  lastName: String!
+  phoneNumber: String
+  createdAt: AWSDateTime! @auto
+  updatedAt: AWSDateTime! @auto
+  
+  jobTitle: String!
+  address: Address!
+  coordinates: Coordinates!
+}
+
+type Address {
+  street: String!
+  street2: String
+  city: String!
+  state: String!
+  zipCode: String!
+}
+
+type Coordinates {
+  latitude: Float!
+  longitude: Float!
+}

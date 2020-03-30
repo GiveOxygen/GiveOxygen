@@ -1,0 +1,49 @@
+{
+    "local": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-giveoxygen-local-155808-authRole",
+            "UnauthRoleArn": "arn:aws:iam::213716610217:role/amplify-giveoxygen-local-155808-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::213716610217:role/amplify-giveoxygen-local-155808-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-giveoxygen-local-155808-deployment",
+            "UnauthRoleName": "amplify-giveoxygen-local-155808-unauthRole",
+            "StackName": "amplify-giveoxygen-local-155808",
+            "StackId": "arn:aws:cloudformation:us-east-1:213716610217:stack/amplify-giveoxygen-local-155808/cda02850-7210-11ea-98d4-0e194195a24f",
+            "AmplifyAppId": "d13i596p8h2qun"
+        },
+        "categories": {
+            "auth": {
+                "giveoxygene2d3455d": {}
+            },
+            "function": {
+                "AdminQueries5c076c4d": {},
+                "giveoxygene2d3455dPostConfirmation": {
+                    "GROUP": "HospitalAdmins"
+                }
+            }
+        }
+    },
+    "develop": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-giveoxygen-develop-161603-authRole",
+            "UnauthRoleArn": "arn:aws:iam::213716610217:role/amplify-giveoxygen-develop-161603-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::213716610217:role/amplify-giveoxygen-develop-161603-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-giveoxygen-develop-161603-deployment",
+            "UnauthRoleName": "amplify-giveoxygen-develop-161603-unauthRole",
+            "StackName": "amplify-giveoxygen-develop-161603",
+            "StackId": "arn:aws:cloudformation:us-east-1:213716610217:stack/amplify-giveoxygen-develop-161603/43b80560-7213-11ea-a733-0ee829539650",
+            "AmplifyAppId": "d13i596p8h2qun"
+        },
+        "categories": {
+            "auth": {
+                "giveoxygene2d3455d": {},
+                "userPoolGroups": {}
+            },
+            "function": {
+                "AdminQueries5c076c4d": {},
+                "giveoxygene2d3455d": {}
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+type Hospital
+  @model
+  @auth(rules: [
+    {allow: public, provider: apiKey, operations: [read]},
+    {allow: private, operations: [read, create]},
+    {allow: groups, groups: ["Admins"]},
+  ])
+{
+  id: ID!
+  name: String!
+  description: String
+  note: String
+  email: String!
+  phoneNumber: String!
+  createdAt: AWSDateTime! @auto
+  updatedAt: AWSDateTime! @auto
+
+  address: Address!
+  coordinates: Coordinates!
+
+  admins: [HospitalAdmin] @connection(keyName: "byHospitalByCreatedAt", fields:["id"])
+}
