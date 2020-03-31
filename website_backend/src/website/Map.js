@@ -9,7 +9,7 @@ import {
 } from 'react-leaflet';
 import L from 'leaflet';
 import { Grid } from '@material-ui/core';
-// import Paper from '@material-ui/core/Paper';
+import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
@@ -20,7 +20,7 @@ import convert from 'convert-units';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
 import request from '../utils/request';
-import SearchHospital from '../components/SearchHospital';
+// import SearchHospital from '../components/SearchHospital';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -49,15 +49,14 @@ const greenIcon = new L.Icon({
   shadowSize: [41, 41],
 });
 
-const goldIcon = new L.Icon({
-  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-
+// const goldIcon = new L.Icon({
+//   iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
+//   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+//   iconSize: [25, 41],
+//   iconAnchor: [12, 41],
+//   popupAnchor: [1, -34],
+//   shadowSize: [41, 41],
+// });
 
 // const { BaseLayer } = LayersControl;
 
@@ -68,7 +67,7 @@ const Map = (props) => {
   const [hospitals, setHospitals] = useState([]);
   const [makers, setMakers] = useState([]);
 
-  const [zoomLevel, setZoomLevel] = useState(11);
+  const [zoomLevel, setZoomLevel] = useState(9); // 11
   const [radiusInMiles, setRadiusInMiles] = useState(10);
 
   const getHospitals = async () => {
@@ -85,6 +84,7 @@ const Map = (props) => {
               city
               state
               zipCode
+              country
             }
             coordinates {
               latitude
@@ -121,6 +121,7 @@ const Map = (props) => {
               city
               state
               zipCode
+              country
             }
             coordinates {
               latitude
@@ -144,7 +145,6 @@ const Map = (props) => {
     const { geolocation } = navigator;
     geolocation.getCurrentPosition(({ coords }) => {
       if (coords) {
-        console.log(coords);
         setTimeout(() => {
           const position = [coords.latitude, coords.longitude];
           setCurrentPosition(position);
@@ -159,7 +159,7 @@ const Map = (props) => {
     })();
   }, []);
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} style={{ height: '100%', padding: 16 }}>
       <Grid item xs={8} className="map-container">
         <LeafletMap
           center={currentPosition}
@@ -245,55 +245,59 @@ const Map = (props) => {
             }}
           />
         </div> */}
-        <List
-          component="nav"
-          subheader={
-            <ListSubheader disableSticky={true} color="red">
-              Hospitals
-            </ListSubheader>
-          }
-        >
-          {hospitals.map((hospital, index)=>(
-            <ListItem
-              key={index}
-              divider
-              button
-              onClick={()=>{
-                setCurrentPosition([hospital.coordinates.latitude, hospital.coordinates.longitude]);
-              }}
-            >
-              <ListItemText
-                primary={hospital.name}
-                secondary={hospital.address.city}
-              />
-            </ListItem>
-          ))}
-        </List>
+        <Paper>
+          <List
+            component="nav"
+            subheader={
+              <ListSubheader disableSticky={true} color="red">
+                Hospitals
+              </ListSubheader>
+            }
+          >
+            {hospitals.map((hospital, index)=>(
+              <ListItem
+                key={index}
+                divider
+                button
+                onClick={()=>{
+                  setCurrentPosition([hospital.coordinates.latitude, hospital.coordinates.longitude]);
+                }}
+              >
+                <ListItemText
+                  primary={hospital.name}
+                  secondary={hospital.address.city}
+                />
+              </ListItem>
+            ))}
+          </List>
+        </Paper>
       </Grid>
       <Grid item xs={2} className="list-container">
-        <List
-          subheader={
-            <ListSubheader component="div" id="nested-list-subheader">
-              Makers
-            </ListSubheader>
-          }
-        >
-          {makers.map((maker, index)=>(
-            <ListItem
-              key={index}
-              divider
-              button
-              onClick={()=>{
-                setCurrentPosition([maker.coordinates.latitude, maker.coordinates.longitude]);
-              }}
-            >
-              <ListItemText
-                primary={`${maker.firstName} (${maker.jobTitle})`}
-                secondary={maker.address.city}
-              />
-            </ListItem>
-          ))}
-        </List>
+        <Paper>
+          <List
+            subheader={
+              <ListSubheader component="div" id="nested-list-subheader">
+                Makers
+              </ListSubheader>
+            }
+          >
+            {makers.map((maker, index)=>(
+              <ListItem
+                key={index}
+                divider
+                button
+                onClick={()=>{
+                  setCurrentPosition([maker.coordinates.latitude, maker.coordinates.longitude]);
+                }}
+              >
+                <ListItemText
+                  primary={`${maker.firstName} (${maker.jobTitle})`}
+                  secondary={maker.address.city}
+                />
+              </ListItem>
+            ))}
+          </List>
+        </Paper>
       </Grid>
     </Grid>
   );

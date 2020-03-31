@@ -31,6 +31,7 @@ const SearchHospital = ({ data, onUpdate, addNewIfNotExist = true }) => {
             city
             state
             zipCode
+            country
           }
           coordinates {
             latitude
@@ -42,8 +43,7 @@ const SearchHospital = ({ data, onUpdate, addNewIfNotExist = true }) => {
         nextToken
       }
     }
-  `, null, 'API_KEY');
-    console.log(result);
+  `, { limit: 200 }, 'API_KEY');
     setHospitals(result);
   };
 
@@ -57,7 +57,7 @@ const SearchHospital = ({ data, onUpdate, addNewIfNotExist = true }) => {
     })();
   }, [data]);
 
-  const renderInput = (params) => <TextField {...params} label="Hospital Name" variant="outlined" />;
+  const renderInput = (params) => <TextField autoFocus={true} {...params} label="Hospital Name" variant="outlined" />;
 
   return (
     <Autocomplete

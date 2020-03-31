@@ -1,13 +1,13 @@
-name,street,city,state,zipCode,phoneNumber,email,latitude,longitude
-Anaheim Global Medical Center,1025 South Anaheim Blvd,Anaheim,CA,92805,714-533-6220,unknown@hospital.org,33.8196827,-117.9097961
-Chapman Global Medical Center,2601 East Chapman Avenue,Orange,CA,92869,714-633-0011,unknown@hospital.org,33.7886124,-117.8262888
-Foothill Regional Medical Center,14662 Newport Ave,Tustin,CA,92780,714-619-7724,unknown@hospital.org,33.7305509,-117.8283481
-Garden Grove Hospital & Medical Center,12601 Garden Grove Blvd,Garden Grove,CA,92843,714-537-5160,unknown@hospital.org,33.7750066,-117.9129079
-Fountain Valley Regional Hospital,17100 Euclid Street,Fountain Valley,CA,92708,714-966-7200,unknown@hospital.org,33.7151853,-117.9360672
-Hoag Hospital Irvine,16200 Sand Canyon Avenue,Irvine,CA,92618,949-517-3000,unknown@hospital.org,33.6608041,-117.7724516
-Hoag Memorial Hospital Presbyterian,One Hoag Drive,Newport Beach,CA,92658,949-764-4624,unknown@hospital.org,33.625061,-117.9304162
-Huntington Beach Hospital,17772 Beach Blvd,Huntington Beach,CA,92647,714-843-5000,unknown@hospital.org,33.70364,-117.986656
-Kaiser Permanente Anaheim Medical Center,3440 E. La Palma Ave,Anaheim,CA,92806,714-644-2000,unknown@hospital.org,33.8520823,-117.8441325
-La Palma Intercommunity Hospital,7901 Walker Street,La Palma,CA,90623,714-670-7400,unknown@hospital.org,33.847533,-118.038414
-Mission Hospital,27700 Medical Center Road,Mission Viejo,CA,92691,949-365-2202,unknown@hospital.org,33.56101530000001,-117.6653937
-Saddleback Memorial Medical Center – Laguna Hills,24451 Health Center Road,Laguna Hills,CA,92653,949-837-4500,unknown@hospital.org,33.6093252,-117.7089298
+name,street,city,state,zipCode,phoneNumber,email,latitude,longitude,country
+Anaheim Global Medical Center,1025 South Anaheim Blvd,Anaheim,CA,92805,714-533-6220,unknown@hospital.org,33.8196827,-117.9097961,US
+Chapman Global Medical Center,2601 East Chapman Avenue,Orange,CA,92869,714-633-0011,unknown@hospital.org,33.7886124,-117.8262888,US
+Foothill Regional Medical Center,14662 Newport Ave,Tustin,CA,92780,714-619-7724,unknown@hospital.org,33.7305509,-117.8283481,US
+Garden Grove Hospital & Medical Center,12601 Garden Grove Blvd,Garden Grove,CA,92843,714-537-5160,unknown@hospital.org,33.7750066,-117.9129079,US
+Fountain Valley Regional Hospital,17100 Euclid Street,Fountain Valley,CA,92708,714-966-7200,unknown@hospital.org,33.7151853,-117.9360672,US
+Hoag Hospital Irvine,16200 Sand Canyon Avenue,Irvine,CA,92618,949-517-3000,unknown@hospital.org,33.6608041,-117.7724516,US
+Hoag Memorial Hospital Presbyterian,One Hoag Drive,Newport Beach,CA,92658,949-764-4624,unknown@hospital.org,33.625061,-117.9304162,US
+Huntington Beach Hospital,17772 Beach Blvd,Huntington Beach,CA,92647,714-843-5000,unknown@hospital.org,33.70364,-117.986656,US
+Kaiser Permanente Anaheim Medical Center,3440 E. La Palma Ave,Anaheim,CA,92806,714-644-2000,unknown@hospital.org,33.8520823,-117.8441325,US
+La Palma Intercommunity Hospital,7901 Walker Street,La Palma,CA,90623,714-670-7400,unknown@hospital.org,33.847533,-118.038414,US
+Mission Hospital,27700 Medical Center Road,Mission Viejo,CA,92691,949-365-2202,unknown@hospital.org,33.5610153,-117.6653937,US
+Saddleback Memorial Medical Center – Laguna Hills,24451 Health Center Road,Laguna Hills,CA,92653,949-837-4500,unknown@hospital.org,33.6093252,-117.7089298,US

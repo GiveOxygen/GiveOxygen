@@ -4,11 +4,12 @@ type HospitalAdmin
   @key(name: "byHospitalByCreatedAt", fields: ["hospitalId", "createdAt"], queryField: "getAdminsByHospitalByCreatedAt")
   @auth(rules: [
     {allow: private, operations: [read, create]},
-    {allow: owner, ownerField: "email", operations: [read, update]},
+    {allow: owner, ownerField: "id", operations: [read, update]},
     {allow: groups, groups: ["Admins"]},
   ])
 {
   email: String!
+  id: String!
   firstName: String!
   lastName: String!
   phoneNumber: String
@@ -28,11 +29,12 @@ type Maker
   @auth(rules: [
     {allow: public, provider: apiKey, operations: [read]},
     {allow: private, operations: [read, create]},
-    {allow: owner, ownerField: "email", operations: [read, update]},
+    {allow: owner, ownerField: "id", operations: [read, update]},
     {allow: groups, groups: ["Admins"]},
   ])
 {
   email: String!
+  id: String!
   firstName: String!
   lastName: String!
   phoneNumber: String

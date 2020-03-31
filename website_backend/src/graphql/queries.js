@@ -27,6 +27,7 @@ export const getHospitalAdmin = /* GraphQL */ `
           city
           state
           zipCode
+          country
         }
         coordinates {
           latitude
@@ -141,6 +142,7 @@ export const listHospitals = /* GraphQL */ `
           city
           state
           zipCode
+          country
         }
         coordinates {
           latitude
@@ -171,6 +173,7 @@ export const getHospital = /* GraphQL */ `
         city
         state
         zipCode
+        country
       }
       coordinates {
         latitude
@@ -208,6 +211,7 @@ export const getMaker = /* GraphQL */ `
         city
         state
         zipCode
+        country
       }
       coordinates {
         latitude
@@ -245,6 +249,7 @@ export const listMakers = /* GraphQL */ `
           city
           state
           zipCode
+          country
         }
         coordinates {
           latitude

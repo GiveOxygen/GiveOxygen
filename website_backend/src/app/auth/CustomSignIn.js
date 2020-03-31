@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
-import { Container, Button, Grid } from '@material-ui/core';
+import {
+  Grid,
+  Button,
+  Paper,
+  Divider,
+  Avatar,
+} from '@material-ui/core';
 import DetailForm from 'react-material-final-form';
+import queryString from 'query-string';
 
 import metadata from './CustomSignIn.metadata';
-import BackNavigatorButton from '../components/BackNavigatorButton';
+// import BackNavigatorButton from '../components/BackNavigatorButton';
 
+let hasRedirected = false;
 const CustomSignIn = ({ onStateChange, authState, authData = {} }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [data, setData] = useState({});
@@ -84,29 +92,54 @@ const CustomSignIn = ({ onStateChange, authState, authData = {} }) => {
     }
   }, []);
 
+
   if (authState !== 'signIn') return null;
 
+  const { signUp } = queryString.parse(window.location.search);
+  if (signUp && !hasRedirected) {
+    hasRedirected = true;
+    onStateChange('signUp');
+    return null;
+  }
+
   return (
-    <Container>
-      <BackNavigatorButton
-        title={'Back to Home'}
-        to={'/'}
-      />
-      <DetailForm
-        title={'Sign In'}
-        metadata={metadata}
-        data={data}
-        isLoading={isSubmitting}
-        onSubmit={submit}
-        submitButtonText="Login"
-      />
-      <Button onClick={()=>onStateChange('signUp')}>
-        Sign up new account
-      </Button>
-      <Button onClick={()=>onStateChange('forgotPassword')}>
-        Forgot Password
-      </Button>
-    </Container>
+    <Grid container alignItems="center" justify="center" style={{ height: '100vh', paddingTop: 0 }}>
+      <Paper style={{ width: 300, maxWidth: '100%', padding: 32 }}>
+        <Grid container justify="center" alignItems="flex-start" style={{ paddingBottom: 32 }}>
+          {/* <BackNavigatorButton
+            title={'Back to Home'}
+            to={'/'}
+          /> */}
+          <Avatar alt="Logo" src={`${process.env.PUBLIC_URL}/logo192.png`} style={{ width: 100, height: 100 }} />
+        </Grid>
+        <DetailForm
+          // title={'Give Oxygen Sign In'}
+          metadata={metadata}
+          data={data}
+          isLoading={isSubmitting}
+          onSubmit={submit}
+          submitButtonText="Login"
+          submitButtonProps={{
+            variant: 'contained',
+            color: 'primary',
+            type: 'submit',
+            fullWidth: true,
+          }}
+        />
+        <Grid container justify="flex-end" alignItems="center" direction="column" style={{ paddingTop: 32 }}>
+          <Divider />
+          <Button onClick={()=>onStateChange('signUp')}>
+            Sign up new account
+          </Button>
+          <Divider />
+          <Button
+            onClick={()=>onStateChange('forgotPassword')}
+          >
+            Forgot Password
+          </Button>
+        </Grid>
+      </Paper>
+    </Grid>
   );
 };
 

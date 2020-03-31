@@ -11,9 +11,10 @@ export default {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-around',
-    paddingTop: 20,
+    padding: 0,
     width: '100%',
-    backgroundColor: '#FFF',
+    // height: '100vh',
+    // backgroundColor: '#FFF',
   },
   section: {
     flex: 1,

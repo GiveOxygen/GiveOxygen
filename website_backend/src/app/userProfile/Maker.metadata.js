@@ -1,14 +1,12 @@
+import AddressOptions from '../auth/AddressOptions';
+
 export default {
   fields: [{
     key: 'email',
     type: 'Email',
     label: 'Email',
     isRequired: true,
-  }, {
-    key: 'password',
-    type: 'Password',
-    label: 'Password',
-    isRequired: true,
+    isDisabled: true,
   }, {
     key: 'firstName',
     type: 'String',
@@ -26,15 +24,15 @@ export default {
     label: 'Phone Number (country code)',
     isRequired: true,
   }, {
-    key: 'role',
+    key: 'jobTitle',
     type: 'String',
-    label: 'I am a... ',
+    label: 'Job Title',
     isRequired: true,
-    formType: 'Radio',
-    formOptions: [
-      { label: 'Hospital Admin', value: 'hospitalAdmin' },
-      { label: 'Maker', value: 'maker' },
-      // { label: 'Supplier', value: 'supplier' },
-    ],
+  }, {
+    key: 'address',
+    type: 'Object',
+    label: 'Address',
+    formType: 'Object',
+    formObjects: AddressOptions,
   }],
 };

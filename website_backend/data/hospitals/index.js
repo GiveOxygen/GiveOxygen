@@ -18,7 +18,6 @@ const prompt = require('../prompt');
       hash: HASH,
       shouldPurge: PURGE,
     } = await prompt();
-    console.log({ ENV, HASH, PURGE });
     if (PURGE) {
       await purgeTable('Hospital', 'id');
     }
@@ -29,7 +28,7 @@ const prompt = require('../prompt');
       .map(async (file) => {
         const filePath = path.join(__dirname, file);
         const hospitals = (await csvtojson().fromFile(filePath))
-          .map(({ name, email, phoneNumber, street, city, state, zipCode, latitude, longitude }) => {
+          .map(({ name, email, phoneNumber, street, city, state, country, zipCode, latitude, longitude }) => {
             return {
               __typename: 'Hospital',
               id: uuidv1(),
@@ -41,6 +40,7 @@ const prompt = require('../prompt');
                 city,
                 state,
                 zipCode,
+                country,
               },
               coordinates: {
                 latitude: parseFloat(latitude),
@@ -51,6 +51,7 @@ const prompt = require('../prompt');
         await writeData('Hospital', hospitals);
       });
 
+    /* eslint-disable */
     async function writeData(Table, data) {
       const tableName = `${Table}-${HASH}-${ENV}`;
       data = data.map((item) => {

@@ -55,8 +55,8 @@ exports.handler = async (event, context, callback) => {
     secret = buff.toString('ascii');
   }
   const { GOOGLE_MAP_APIKEY_BACKEND } = JSON.parse(secret);
-  const { street, street2, city, state } = details.address || details.hospitalAddress;
-  const addressString = [street, street2, city, state].filter((i) => i).join(',').replace(/ /g, '+');
+  const { street, street2, city, state, country } = details.address || details.hospitalAddress;
+  const addressString = [street, street2, city, state, country].filter((i) => i).join(',').replace(/ /g, '+');
   const googleGeoUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${addressString}&key=${GOOGLE_MAP_APIKEY_BACKEND}`;
   console.log(googleGeoUrl);
   const { results } = await makeRequest(googleGeoUrl);

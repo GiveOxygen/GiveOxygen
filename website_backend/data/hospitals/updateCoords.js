@@ -12,7 +12,7 @@ const client = new AWS.SecretsManager({ region: 'us-east-1' });
 (async () => {
   const { SecretString } = await client.getSecretValue({ SecretId: 'giveoxygen' }).promise();
   const { GOOGLE_MAP_APIKEY_BACKEND } = JSON.parse(SecretString);
-  console.log(GOOGLE_MAP_APIKEY_BACKEND);
+
   await fs
     .readdirSync(__dirname)
     .filter((file) => file.endsWith('.csv'))
