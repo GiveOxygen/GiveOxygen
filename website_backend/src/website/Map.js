@@ -64,7 +64,7 @@ const goldIcon = new L.Icon({
 // let map;
 const Map = (props) => {
   const [myPosition, setMyPosition] = useState([]);
-  const [currentPosition, setCurrentPosition] = useState([0, 0]);
+  const [currentPosition, setCurrentPosition] = useState([40.7505189, -74.0014762]);
   const [hospitals, setHospitals] = useState([]);
   const [makers, setMakers] = useState([]);
 
@@ -203,9 +203,10 @@ const Map = (props) => {
             </Popup>
           </Marker> */}
 
-          <Circle center={myPosition} color="grey" radius={convert(radiusInMiles).from('mi').to('m')}>
-            <Popup>Within {radiusInMiles} miles</Popup>
-          </Circle>
+          {myPosition.length > 0 &&
+            <Circle center={myPosition} color="grey" radius={convert(radiusInMiles).from('mi').to('m')}>
+              <Popup>Within {radiusInMiles} miles</Popup>
+            </Circle>}
 
           {hospitals.map((hospital, index)=>(
             <Marker
