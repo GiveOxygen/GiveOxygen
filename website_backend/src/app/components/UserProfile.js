@@ -61,6 +61,10 @@ export default () => {
           let hospitalId = inHospitalId;
 
           if (!hospitalId) {
+            if (hospitalAddress.street2 === '') {
+              delete hospitalAddress.street2;
+            }
+
             const { data: { createHospital: hospitalData } } = await request(createHospital, {
               input: {
                 name: hospitalName,
@@ -100,6 +104,9 @@ export default () => {
             jobTitle,
             coordinates,
           } = JSON.parse(details);
+          if (address.street2 === '') {
+            delete address.street2;
+          }
           const { data: { createMaker: createMakerResult } } = await request(createMaker, {
             input: {
               email,
