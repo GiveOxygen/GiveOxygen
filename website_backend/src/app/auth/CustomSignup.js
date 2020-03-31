@@ -7,16 +7,15 @@ import DetailForm from 'react-material-final-form';
 import metadata from './CustomSignUp.metadata';
 import hospitalMetadata from './Hospital.metadata';
 import makerMetadata from './Maker.metadata';
-
+import SearchHospital from '../../components/SearchHospital';
 import BackNavigatorButton from '../components/BackNavigatorButton';
-import request from '../../utils/request';
-import { createHospitalAdmin, createHospital, createMaker } from '../../graphql/mutations';
 
 const CustomSignUp = ({ onStateChange, authState }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [data, setData] = useState({});
   const [profile, setProfile] = useState({});
   const [mode, setMode] = useState('profile');
+  const [selectedHospital, setSelectedHospital] = useState(null);
 
   const next = async (result) => {
     setProfile(result);
@@ -26,6 +25,10 @@ const CustomSignUp = ({ onStateChange, authState }) => {
 
   const register = async (details) => {
     setIsSubmitting(true);
+
+    if (selectedHospital && selectedHospital.id) {
+      details.hospitalId = selectedHospital.id;
+    }
 
     const { email, password, firstName, lastName, phoneNumber, role } = profile;
     try {
@@ -63,16 +66,16 @@ const CustomSignUp = ({ onStateChange, authState }) => {
           // role: 'maker',
         },
         hospitalAdmin: {
-          jobTitle: 'Doctor',
-          hospitalName: 'Hoag',
-          hospitalEmail: 'info@hoag.org',
-          hospitalPhoneNumber: '6263212768',
-          hospitalAddress: {
-            street: '123 Sand canyon ave',
-            city: 'Irvine',
-            state: 'CA',
-            zipCode: '9260',
-          },
+          // jobTitle: 'Doctor',
+          // hospitalName: 'Hoag',
+          // hospitalEmail: 'info@hoag.org',
+          // hospitalPhoneNumber: '6263212768',
+          // hospitalAddress: {
+          //   street: '123 Sand canyon ave',
+          //   city: 'Irvine',
+          //   state: 'CA',
+          //   zipCode: '9260',
+          // },
         },
         maker: {
 
@@ -101,7 +104,23 @@ const CustomSignUp = ({ onStateChange, authState }) => {
         />
       }
       {
-        mode === 'hospitalAdmin' &&
+        mode === 'hospitalAdmin' && !selectedHospital &&
+        <SearchHospital onUpdate={(result)=>{
+          setSelectedHospital(result);
+          setData({
+            hospitalAdmin: {
+              jobTitle: '',
+              hospitalName: result.name,
+              hospitalEmail: result.email || '',
+              hospitalPhoneNumber: result.phoneNumber || '',
+              hospitalAddress: result.address || {},
+            },
+          });
+        }}
+        />
+      }
+      {
+        mode === 'hospitalAdmin' && selectedHospital &&
         <DetailForm
           title={'Hospital'}
           metadata={hospitalMetadata}

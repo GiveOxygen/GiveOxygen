@@ -12,11 +12,11 @@ export default async (query, params, authMode) => {
   const options = graphqlOperation(query, params);
   // https://github.com/aws-amplify/amplify-js/blob/master/packages/api/src/types/index.ts#L75
   options.authMode = authMode || 'AMAZON_COGNITO_USER_POOLS';
-  console.log(options);
+  // global.logger.debug(options);
   const res = await API.graphql(options);
 
   if (__DEV__) {
-    global.logger.debug(JSON.stringify(res, null, 2));
+    // global.logger.debug(JSON.stringify(res, null, 2));
 
     const time = Date.now() - startedAt;
     const name = `${query.split('(')[0].replace(/ +/g, ' ').replace(/\n+/g, '')}`;

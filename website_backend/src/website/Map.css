@@ -1,7 +1,17 @@
+.map-container {
+    height: calc(100vh - 100px)
+}
+
+.list-container {
+    height: calc(100vh - 100px);
+    overflow: auto;
+}
+
 /* React Leaflet */
 .leaflet-container {
-    min-height: 600px;
+    /* min-height: 600px; */
     width: 100%;
+    height: 100%;
 }
 
 .leaflet-control-attribution {

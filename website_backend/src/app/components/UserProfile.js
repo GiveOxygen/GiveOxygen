@@ -41,14 +41,15 @@ export default () => {
         given_name: firstName,
         phone_number: phoneNumber,
       } = res.attributes;
+      // const groups = res.signInUserSession.accessToken.payload['cognito:groups'];
 
       if (role === 'hospitalAdmin') {
-        // const groups = res.signInUserSession.accessToken.payload['cognito:groups'];
         const { data: { getHospitalAdmin: result } } = await request(getHospitalAdmin, { email });
         if (result) {
           setUser(result);
         } else {
           const {
+            hospitalId: inHospitalId,
             hospitalName,
             hospitalEmail,
             hospitalPhoneNumber,
@@ -56,19 +57,30 @@ export default () => {
             jobTitle,
             coordinates,
           } = JSON.parse(details);
-          const { data: { createHospital: hospitalData } } = await request(createHospital, {
-            input: {
-              name: hospitalName,
-              email: hospitalEmail,
-              phoneNumber: hospitalPhoneNumber,
-              address: hospitalAddress,
-              coordinates: {
-                latitude: coordinates[0],
-                longitude: coordinates[1],
+
+          let hospitalId = inHospitalId;
+
+          if (!hospitalId) {
+            if (hospitalAddress.street2 === '') {
+              delete hospitalAddress.street2;
+            }
+
+            const { data: { createHospital: hospitalData } } = await request(createHospital, {
+              input: {
+                name: hospitalName,
+                email: hospitalEmail,
+                phoneNumber: hospitalPhoneNumber,
+                address: hospitalAddress,
+                coordinates: {
+                  latitude: coordinates[0],
+                  longitude: coordinates[1],
+                },
               },
-            },
-          });
-          console.log(hospitalData);
+            });
+            console.log(hospitalData);
+            hospitalId = hospitalData.id;
+          }
+
           const { data: { createHospitalAdmin: createHospitalAdminResult } } = await request(createHospitalAdmin, {
             input: {
               email,
@@ -76,7 +88,7 @@ export default () => {
               lastName,
               phoneNumber,
               jobTitle: jobTitle,
-              hospitalId: hospitalData.id,
+              hospitalId,
             },
           });
           setUser(createHospitalAdminResult);
@@ -92,6 +104,9 @@ export default () => {
             jobTitle,
             coordinates,
           } = JSON.parse(details);
+          if (address.street2 === '') {
+            delete address.street2;
+          }
           const { data: { createMaker: createMakerResult } } = await request(createMaker, {
             input: {
               email,
@@ -127,9 +142,6 @@ export default () => {
         </ListItem>
         <ListItem>
           <ListItemText primary="Phone Number" secondary={`${user.phoneNumber}`} />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Role" secondary={`${user.role}`} />
         </ListItem>
       </List>
       <Button variant="contained" color="secondary" onClick={logout}>Logout</Button>

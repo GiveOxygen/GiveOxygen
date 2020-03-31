@@ -78,69 +78,6 @@ export const listHospitalAdmins = /* GraphQL */ `
     }
   }
 `;
-export const getMaker = /* GraphQL */ `
-  query GetMaker($email: String!) {
-    getMaker(email: $email) {
-      email
-      firstName
-      lastName
-      phoneNumber
-      createdAt
-      updatedAt
-      jobTitle
-      address {
-        street
-        street2
-        city
-        state
-        zipCode
-      }
-      coordinates {
-        latitude
-        longitude
-      }
-    }
-  }
-`;
-export const listMakers = /* GraphQL */ `
-  query ListMakers(
-    $email: String
-    $filter: ModelMakerFilterInput
-    $limit: Int
-    $nextToken: String
-    $sortDirection: ModelSortDirection
-  ) {
-    listMakers(
-      email: $email
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
-      items {
-        email
-        firstName
-        lastName
-        phoneNumber
-        createdAt
-        updatedAt
-        jobTitle
-        address {
-          street
-          street2
-          city
-          state
-          zipCode
-        }
-        coordinates {
-          latitude
-          longitude
-        }
-      }
-      nextToken
-    }
-  }
-`;
 export const getAdminsByHospitalByCreatedAt = /* GraphQL */ `
   query GetAdminsByHospitalByCreatedAt(
     $hospitalId: ID
@@ -252,6 +189,69 @@ export const getHospital = /* GraphQL */ `
         }
         nextToken
       }
+    }
+  }
+`;
+export const getMaker = /* GraphQL */ `
+  query GetMaker($email: String!) {
+    getMaker(email: $email) {
+      email
+      firstName
+      lastName
+      phoneNumber
+      createdAt
+      updatedAt
+      jobTitle
+      address {
+        street
+        street2
+        city
+        state
+        zipCode
+      }
+      coordinates {
+        latitude
+        longitude
+      }
+    }
+  }
+`;
+export const listMakers = /* GraphQL */ `
+  query ListMakers(
+    $email: String
+    $filter: ModelMakerFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listMakers(
+      email: $email
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        email
+        firstName
+        lastName
+        phoneNumber
+        createdAt
+        updatedAt
+        jobTitle
+        address {
+          street
+          street2
+          city
+          state
+          zipCode
+        }
+        coordinates {
+          latitude
+          longitude
+        }
+      }
+      nextToken
     }
   }
 `;

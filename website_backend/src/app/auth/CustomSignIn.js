@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
-import { Container, Button } from '@material-ui/core';
+import { Container, Button, Grid } from '@material-ui/core';
 import DetailForm from 'react-material-final-form';
 
 import metadata from './CustomSignIn.metadata';
+import BackNavigatorButton from '../components/BackNavigatorButton';
 
 const CustomSignIn = ({ onStateChange, authState, authData = {} }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -87,6 +88,10 @@ const CustomSignIn = ({ onStateChange, authState, authData = {} }) => {
 
   return (
     <Container>
+      <BackNavigatorButton
+        title={'Back to Home'}
+        to={'/'}
+      />
       <DetailForm
         title={'Sign In'}
         metadata={metadata}
