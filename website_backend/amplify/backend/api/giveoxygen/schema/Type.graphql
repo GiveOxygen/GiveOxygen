@@ -1,0 +1,12 @@
+type Address {
+  street: String!
+  street2: String
+  city: String!
+  state: String!
+  zipCode: String!
+}
+
+type Coordinates {
+  latitude: Float!
+  longitude: Float!
+}

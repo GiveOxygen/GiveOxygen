@@ -7,7 +7,7 @@ import request from '../utils/request';
 
 const filter = createFilterOptions();
 
-const SearchHospital = ({ onUpdate, addNewIfNotExist=true }) => {
+const SearchHospital = ({ data, onUpdate, addNewIfNotExist = true }) => {
   const [value, setValue] = React.useState(null);
   const [hospitals, setHospitals] = useState([]);
 
@@ -49,9 +49,13 @@ const SearchHospital = ({ onUpdate, addNewIfNotExist=true }) => {
 
   useEffect(() => {
     (async () => {
-      await getHospitals();
+      if (data) {
+        setHospitals(data);
+      } else {
+        await getHospitals();
+      }
     })();
-  }, []);
+  }, [data]);
 
   const renderInput = (params) => <TextField {...params} label="Hospital Name" variant="outlined" />;
 
@@ -60,7 +64,7 @@ const SearchHospital = ({ onUpdate, addNewIfNotExist=true }) => {
       id="search-hospital-box"
       options={hospitals}
       renderOption={(option) => option.name}
-      style={{ width: 300 }}
+      style={{ width: '100%' }}
       renderInput={renderInput}
       value={value}
       onChange={(event, newValue) => {
@@ -104,6 +108,7 @@ const SearchHospital = ({ onUpdate, addNewIfNotExist=true }) => {
 };
 
 SearchHospital.propTypes = {
+  data: PropTypes.array,
   onUpdate: PropTypes.func,
   addNewIfNotExist: PropTypes.bool,
 };
