@@ -1,0 +1,54 @@
+{
+  "app.name": "手作呼吸器計畫 (Give Oxygen)",
+  "app.copyright": "Copyright 2020 Give Oxygen LLC",
+
+  "action.next": "下一步",
+  "action.backToSignIn": "返回登入畫面",
+  "action.add": "新增",
+  "action.verify": "確認",
+  "action.goTo": "前望",
+  "action.update": "更新",
+
+  "auth.signUp": "註冊",
+  "auth.login": "登入",
+  "auth.forgotPassword": "忘記密碼",
+  "auth.phoneNumberWithCountryCode": "電話號碼(含國碼)",
+  "auth.iAmRole": "我是 ...",
+  "auth.code": "認證碼",
+  "auth.verifyEmail": "電子信箱認證",
+
+  "profile": "個人資料",
+  "profile.email": "電子信箱",
+  "profile.password": "密碼",
+  "profile.firstName": "名字",
+  "profile.lastName": "姓",
+  "profile.phoneNumber": "電話號碼",
+  "profile.jobTitle": "職稱",
+  "profile.address": "地址",
+  "profile.address.street": "街",
+  "profile.address.street2": "街 (延續)",
+  "profile.address.city": "城市",
+  "profile.address.state": "州/區/省",
+  "profile.address.zipCode": "郵遞區號",
+  "profile.address.country": "國家",
+
+  "hospital": "醫院",
+  "hospitals": "醫院",
+  "hospital.admin": "醫院管理員",
+  "hospital.name": "醫院名稱",
+  "hospital.email": "醫院電子信箱",
+  "hospital.phoneNumber": "醫院電話號碼",
+  "hospital.address": "醫院地址",
+
+  "maker": "手作自造者",
+  "makers": "手作自造者",
+
+  "map.aroundMe": "距離約 {{radiusInMiles}} 英里",
+
+  "dashboard": "首頁",
+
+  "annoucement.title": "感謝加入計畫",
+  "annoucement.content": "我們將會盡快透過電子信箱與您聯繫，請時常拜訪我們的官網以獲取最新的資訊。",
+
+  "end": "Env"
+}

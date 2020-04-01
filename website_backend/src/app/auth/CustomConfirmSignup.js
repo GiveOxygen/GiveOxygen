@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
 import { Grid, Paper } from '@material-ui/core';
 import DetailForm from 'react-material-final-form';
+import { useTranslation } from 'react-i18next';
 
 import metadata from './CustomConfirmSignup.metadata';
 import BackNavigatorButton from '../components/BackNavigatorButton';
 
 const CustomConfirmSignUp = ({ onStateChange, authState, authData = {} }) => {
+  const { t } = useTranslation();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const confirmSignUp = async ({ code }) => {
@@ -33,12 +36,12 @@ const CustomConfirmSignUp = ({ onStateChange, authState, authData = {} }) => {
     <Grid container alignItems="center" justify="center" style={{ height: '100vh', paddingTop: 0 }}>
       <Paper style={{ width: 300, maxWidth: '100%', padding: 32 }}>
         <DetailForm
-          title={'Verify Email'}
-          metadata={metadata}
+          title={t('auth.verifyEmail')}
+          metadata={metadata(t)}
           data={{}}
           isLoading={isSubmitting}
           onSubmit={confirmSignUp}
-          submitButtonText="Verify"
+          submitButtonText={t('action.verify')}
           submitButtonProps={{
             variant: 'contained',
             color: 'primary',
@@ -48,7 +51,7 @@ const CustomConfirmSignUp = ({ onStateChange, authState, authData = {} }) => {
         />
         <div style={{ paddingTop: 24 }}>
           <BackNavigatorButton
-            title={'Back to Sign In'}
+            title={t('action.backToSignIn')}
             onClick={() => onStateChange('signIn')}
           />
         </div>

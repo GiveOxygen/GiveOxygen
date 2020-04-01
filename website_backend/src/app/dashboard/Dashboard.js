@@ -24,6 +24,8 @@ import Paper from '@material-ui/core/Paper';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import LanguageSelector from '../../components/LanguageSelector';
+import { useTranslation } from 'react-i18next';
 // import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import { mainListItems, secondaryListItems } from './listItems';
@@ -114,6 +116,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dashboard = () => {
+  const { t } = useTranslation();
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -153,13 +157,14 @@ const Dashboard = () => {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Give Oxygen
+            {t('app.name')}
           </Typography>
           {/* <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton> */}
+          <LanguageSelector />
           <IconButton color="inherit" onClick={logout}>
             <ExitToAppIcon />
           </IconButton>
@@ -180,9 +185,9 @@ const Dashboard = () => {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
-        <List>{secondaryListItems}</List>
+        <List>{mainListItems(t)}</List>
+        <List>{secondaryListItems(t)}</List>
+        <div style={{ flex: 1 }} />
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />

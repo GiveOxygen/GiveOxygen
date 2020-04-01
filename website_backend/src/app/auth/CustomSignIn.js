@@ -10,12 +10,16 @@ import {
 } from '@material-ui/core';
 import DetailForm from 'react-material-final-form';
 import queryString from 'query-string';
+import { useTranslation } from 'react-i18next';
 
+import LanguageSelector from '../../components/LanguageSelector';
 import metadata from './CustomSignIn.metadata';
 // import BackNavigatorButton from '../components/BackNavigatorButton';
 
 let hasRedirected = false;
 const CustomSignIn = ({ onStateChange, authState, authData = {} }) => {
+  const { t } = useTranslation();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [data, setData] = useState({});
 
@@ -114,11 +118,11 @@ const CustomSignIn = ({ onStateChange, authState, authData = {} }) => {
         </Grid>
         <DetailForm
           // title={'Give Oxygen Sign In'}
-          metadata={metadata}
+          metadata={metadata(t)}
           data={data}
           isLoading={isSubmitting}
           onSubmit={submit}
-          submitButtonText="Login"
+          submitButtonText={t('auth.login')}
           submitButtonProps={{
             variant: 'contained',
             color: 'primary',
@@ -129,14 +133,16 @@ const CustomSignIn = ({ onStateChange, authState, authData = {} }) => {
         <Grid container justify="flex-end" alignItems="center" direction="column" style={{ paddingTop: 32 }}>
           <Divider />
           <Button onClick={()=>onStateChange('signUp')}>
-            Sign up new account
+            {t('auth.signUp')}
           </Button>
           <Divider />
           <Button
             onClick={()=>onStateChange('forgotPassword')}
           >
-            Forgot Password
+            {t('auth.forgotPassword')}
           </Button>
+
+          <LanguageSelector />
         </Grid>
       </Paper>
     </Grid>

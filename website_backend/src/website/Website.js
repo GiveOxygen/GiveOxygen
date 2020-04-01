@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import { Container, Button, Grid } from '@material-ui/core';
 import Person from '@material-ui/icons/Person';
 import queryString from 'query-string';
+import { useTranslation } from 'react-i18next';
 
+import LanguageSelector from '../components/LanguageSelector';
 import AdapterNavLink from '../components/AdapterNavLink';
 import Map from './Map';
 
 const Website = ({ history }) => {
+  const { t } = useTranslation();
+
   const { hideHeader, login } = queryString.parse(window.location.search);
 
   if (login) {
@@ -19,7 +23,9 @@ const Website = ({ history }) => {
     <Container maxWidth={false}>
       {!hideHeader &&
       <Grid container justify="space-between" alignItems="center">
-        <h1>Give Oxygen Map</h1>
+        <h1>
+          {t('app.name')}
+        </h1>
         <div style={{ flex: 1 }} />
         <Button
           color="primary"
@@ -27,7 +33,7 @@ const Website = ({ history }) => {
           target="_self"
           to={'/app?signUp=1'}
         >
-          SignUp
+          {t('auth.signUp')}
         </Button>
         <Button
           color="primary"
@@ -36,8 +42,9 @@ const Website = ({ history }) => {
           to={'/app'}
         >
           <Person fontSize="inherit" style={{ marginRight: 5, marginLeft: 5 }}/>
-          Login
+          {t('auth.login')}
         </Button>
+        <LanguageSelector />
       </Grid>}
 
       <div style={{ height: hideHeader ? '100vh' : `calc(100vh - 100px)` }}>

@@ -15,6 +15,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import convert from 'convert-units';
+import { useTranslation } from 'react-i18next';
 
 // import { GoogleLayer } from 'react-leaflet-google';
 import 'leaflet/dist/leaflet.css';
@@ -62,6 +63,7 @@ const greenIcon = new L.Icon({
 
 // let map;
 const Map = (props) => {
+  const { t } = useTranslation();
   const [myPosition, setMyPosition] = useState([]);
   const [currentPosition, setCurrentPosition] = useState([40.7505189, -74.0014762]);
   const [hospitals, setHospitals] = useState([]);
@@ -205,7 +207,9 @@ const Map = (props) => {
 
           {myPosition.length > 0 &&
             <Circle center={myPosition} color="grey" radius={convert(radiusInMiles).from('mi').to('m')}>
-              <Popup>Within {radiusInMiles} miles</Popup>
+              <Popup>
+                {t('map.aroundMe', { radiusInMiles })}
+              </Popup>
             </Circle>}
 
           {hospitals.map((hospital, index)=>(
@@ -250,7 +254,7 @@ const Map = (props) => {
             component="nav"
             subheader={
               <ListSubheader disableSticky={true} color="red">
-                Hospitals
+                {t('hospitals')}
               </ListSubheader>
             }
           >
@@ -277,7 +281,7 @@ const Map = (props) => {
           <List
             subheader={
               <ListSubheader component="div" id="nested-list-subheader">
-                Makers
+                {t('makers')}
               </ListSubheader>
             }
           >

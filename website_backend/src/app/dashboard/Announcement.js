@@ -2,6 +2,8 @@ import React from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { useTranslation } from 'react-i18next';
+
 import Title from './Title';
 
 const useStyles = makeStyles({
@@ -13,21 +15,18 @@ const useStyles = makeStyles({
 });
 
 const Announcement = () => {
+  const { t } = useTranslation();
+
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Title>Thank you for signup.</Title>
-      {/* <Typography component="p" variant="h4">
-        Thank you for signup.
-      </Typography> */}
+      <Title>{t('annoucement.title')}</Title>
       <Typography color="textSecondary" className={classes.context}>
-        We will be sending you an email with further instructions,
-        in the meantime we are redirecting you to the main page
-        which has the latest information on the project build and coordination.
+        {t('annoucement.content')}
       </Typography>
       <div>
         <Link color="primary" href="https://www.giveoxygen.com" target="_blank">
-          Go to GiveOxygen.com
+          {t('action.goTo')} GiveOxygen.com
         </Link>
       </div>
     </React.Fragment>

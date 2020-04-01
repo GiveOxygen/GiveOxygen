@@ -4,6 +4,8 @@ import { Auth } from 'aws-amplify';
 import { Grid, Paper, Avatar } from '@material-ui/core';
 import DetailForm from 'react-material-final-form';
 import queryString from 'query-string';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from '../../components/LanguageSelector';
 // import { PhoneNumberFormat, PhoneNumberUtil } from 'google-libphonenumber';
 
 import metadata from './CustomSignUp.metadata';
@@ -15,6 +17,8 @@ import BackNavigatorButton from '../components/BackNavigatorButton';
 // const phoneUtil = PhoneNumberUtil.getInstance();
 
 const CustomSignUp = ({ onStateChange, authState }) => {
+  const { t } = useTranslation();
+
   // ?signUp=1&role=maker
   // ?signUp=1&role=hospitalAdmin
   const { role: roleFromQueryString } = queryString.parse(window.location.search);
@@ -100,7 +104,7 @@ const CustomSignUp = ({ onStateChange, authState }) => {
   return (
     <Grid container alignItems="center" justify="center" style={{ height: '100vh', paddingTop: 0 }}>
       <Paper style={{ minWidth: 300, width: '50%', maxWidth: '100%', minHeight: 350, padding: 32 }}>
-        <Grid container justify="center" alignItems="flex-start" direction="column">
+        <Grid container justify="center" alignItems="center" direction="column">
           <Grid container justify="center" alignItems="flex-start" style={{ paddingBottom: 32 }}>
             {/* <BackNavigatorButton
               title={'Back to Home'}
@@ -113,11 +117,11 @@ const CustomSignUp = ({ onStateChange, authState }) => {
               mode === 'profile' &&
               <DetailForm
                 // title={'Sign Up'}
-                metadata={metadata}
+                metadata={metadata(t)}
                 data={data.profile}
                 isLoading={isSubmitting}
                 onSubmit={next}
-                submitButtonText="Next"
+                submitButtonText={t('action.next')}
                 submitButtonProps={{
                   variant: 'contained',
                   color: 'primary',
@@ -148,11 +152,11 @@ const CustomSignUp = ({ onStateChange, authState }) => {
               mode === 'hospitalAdmin' && selectedHospital &&
               <DetailForm
                 // title={'Hospital'}
-                metadata={hospitalMetadata}
+                metadata={hospitalMetadata(t)}
                 data={data.hospitalAdmin}
                 isLoading={isSubmitting}
                 onSubmit={register}
-                submitButtonText="Register"
+                submitButtonText={t('auth.signUp')}
                 submitButtonProps={{
                   variant: 'contained',
                   color: 'primary',
@@ -164,12 +168,12 @@ const CustomSignUp = ({ onStateChange, authState }) => {
             {
               mode === 'maker' &&
               <DetailForm
-                title={'Maker'}
-                metadata={makerMetadata}
+                // title={'Maker'}
+                metadata={makerMetadata(t)}
                 data={data.maker}
                 isLoading={isSubmitting}
                 onSubmit={register}
-                submitButtonText="Register"
+                submitButtonText={t('auth.signUp')}
                 submitButtonProps={{
                   variant: 'contained',
                   color: 'primary',
@@ -180,12 +184,13 @@ const CustomSignUp = ({ onStateChange, authState }) => {
             }
           </div>
 
-          <div style={{ paddingTop: 24 }}>
+          <Grid container justify="space-between" style={{ paddingTop: 24 }}>
             <BackNavigatorButton
-              title={'Back to Sign In'}
+              title={t('action.backToSignIn')}
               onClick={() => onStateChange('signIn')}
             />
-          </div>
+            <LanguageSelector />
+          </Grid>
         </Grid>
       </Paper>
     </Grid>

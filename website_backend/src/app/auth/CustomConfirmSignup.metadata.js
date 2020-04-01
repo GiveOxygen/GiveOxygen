@@ -1,8 +1,10 @@
-export default {
-  fields: [{
-    key: 'code',
-    type: 'String',
-    label: 'Code',
-    isRequired: true,
-  }],
+export default (t) => {
+  return {
+    fields: [{
+      key: 'code',
+      type: 'String',
+      label: t('auth.code'),
+      isRequired: true,
+    }],
+  };
 };

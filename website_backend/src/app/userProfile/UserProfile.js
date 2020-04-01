@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Auth } from 'aws-amplify';
 import { Paper } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import DetailForm from 'react-material-final-form';
+import { useTranslation } from 'react-i18next';
 
 import MakerMetadata from './Maker.metadata';
 import HospitalAdminMetadata from './HospitalAdmin.metadata';
@@ -11,19 +11,9 @@ import request from '../../utils/request';
 import { getHospitalAdmin, getMaker } from '../../graphql/queries';
 import { updateMaker, updateHospitalAdmin } from '../../graphql/mutations';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-  nested: {
-    paddingLeft: theme.spacing(4),
-  },
-}));
-
 export default () => {
-  const classes = useStyles();
+  const { t } = useTranslation();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [role, setRole] = useState('hospitalAdmin');
   const [user, setUser] = useState({});
@@ -78,11 +68,11 @@ export default () => {
     <Paper style={{ padding: 16 }}>
       <DetailForm
         // title={'Sign Up'}
-        metadata={ role ==='hospitalAdmin'? HospitalAdminMetadata: MakerMetadata}
+        metadata={ role ==='hospitalAdmin'? HospitalAdminMetadata(t): MakerMetadata(t)}
         data={user}
         isLoading={isSubmitting}
         onSubmit={update}
-        submitButtonText="Update"
+        submitButtonText={t('action.update')}
         submitButtonProps={{
           variant: 'contained',
           color: 'primary',

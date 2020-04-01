@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import { useTranslation } from 'react-i18next';
 
 import request from '../utils/request';
 
 const filter = createFilterOptions();
 
 const SearchHospital = ({ data, onUpdate, addNewIfNotExist = true }) => {
+  const { t } = useTranslation();
+
   const [value, setValue] = React.useState(null);
   const [hospitals, setHospitals] = useState([]);
 
@@ -57,7 +60,7 @@ const SearchHospital = ({ data, onUpdate, addNewIfNotExist = true }) => {
     })();
   }, [data]);
 
-  const renderInput = (params) => <TextField autoFocus={true} {...params} label="Hospital Name" variant="outlined" />;
+  const renderInput = (params) => <TextField autoFocus={true} {...params} label={t('hospital.name')} variant="outlined" />;
 
   return (
     <Autocomplete
@@ -86,7 +89,7 @@ const SearchHospital = ({ data, onUpdate, addNewIfNotExist = true }) => {
         if (addNewIfNotExist && params.inputValue !== '') {
           filtered.push({
             inputValue: params.inputValue,
-            name: `Add "${params.inputValue}"`,
+            name: `${t('action.add')} "${params.inputValue}"`,
           });
         }
 

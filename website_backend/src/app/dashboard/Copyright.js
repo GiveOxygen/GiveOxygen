@@ -1,10 +1,13 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import { useTranslation } from 'react-i18next';
 
 const Copyright = () => {
+  const { t } = useTranslation();
+
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright 2020 Give Oxygen LLC | All Rights Reserved | Contact'}
+      {t('app.copyright')}
     </Typography>
   );
 };

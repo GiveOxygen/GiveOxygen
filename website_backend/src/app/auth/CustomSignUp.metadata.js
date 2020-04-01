@@ -1,40 +1,42 @@
-export default {
-  fields: [{
-    key: 'email',
-    type: 'Email',
-    label: 'Email',
-    isRequired: true,
-  }, {
-    key: 'password',
-    type: 'Password',
-    label: 'Password',
-    isRequired: true,
-  }, {
-    key: 'firstName',
-    type: 'String',
-    label: 'First Name',
-    isRequired: true,
-  }, {
-    key: 'lastName',
-    type: 'String',
-    label: 'Last Name',
-    isRequired: true,
-  }, {
-    key: 'phoneNumber',
-    type: 'string',
-    // formType: 'phone',
-    label: 'Phone Number (country code)',
-    isRequired: true,
-  }, {
-    key: 'role',
-    type: 'String',
-    label: 'I am a... ',
-    isRequired: true,
-    formType: 'Radio',
-    formOptions: [
-      { label: 'Hospital Admin', value: 'hospitalAdmin' },
-      { label: 'Maker', value: 'maker' },
-      // { label: 'Supplier', value: 'supplier' },
-    ],
-  }],
+export default (t) => {
+  return {
+    fields: [{
+      key: 'email',
+      type: 'Email',
+      label: t('profile.email'),
+      isRequired: true,
+    }, {
+      key: 'password',
+      type: 'Password',
+      label: t('profile.password'),
+      isRequired: true,
+    }, {
+      key: 'firstName',
+      type: 'String',
+      label: t('profile.firstName'),
+      isRequired: true,
+    }, {
+      key: 'lastName',
+      type: 'String',
+      label: t('profile.lastName'),
+      isRequired: true,
+    }, {
+      key: 'phoneNumber',
+      type: 'string',
+      // formType: 'phone',
+      label: t('auth.phoneNumberWithCountryCode'),
+      isRequired: true,
+    }, {
+      key: 'role',
+      type: 'String',
+      label: t('auth.iAmRole'),
+      isRequired: true,
+      formType: 'Radio',
+      formOptions: [
+        { label: t('hospital.admin'), value: 'hospitalAdmin' },
+        { label: t('maker'), value: 'maker' },
+        // { label: 'Supplier', value: 'supplier' },
+      ],
+    }],
+  };
 };
