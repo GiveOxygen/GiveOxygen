@@ -12,10 +12,15 @@ import Map from './Map';
 const Website = ({ history }) => {
   const { t } = useTranslation();
 
-  const { hideHeader, login } = queryString.parse(window.location.search);
+  const { hideHeader, login, signUp, role } = queryString.parse(window.location.search);
 
   if (login) {
     history.push('/app');
+    return null;
+  }
+
+  if (signUp) {
+    history.push('/app?signUp=1' + (role ? `&role=${role}` : ''));
     return null;
   }
 
