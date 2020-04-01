@@ -5,6 +5,7 @@ export const getHospitalAdmin = /* GraphQL */ `
   query GetHospitalAdmin($email: String!) {
     getHospitalAdmin(email: $email) {
       email
+      id
       firstName
       lastName
       phoneNumber
@@ -27,6 +28,7 @@ export const getHospitalAdmin = /* GraphQL */ `
           city
           state
           zipCode
+          country
         }
         coordinates {
           latitude
@@ -141,6 +143,7 @@ export const listHospitals = /* GraphQL */ `
           city
           state
           zipCode
+          country
         }
         coordinates {
           latitude
@@ -171,6 +174,7 @@ export const getHospital = /* GraphQL */ `
         city
         state
         zipCode
+        country
       }
       coordinates {
         latitude
@@ -196,6 +200,7 @@ export const getMaker = /* GraphQL */ `
   query GetMaker($email: String!) {
     getMaker(email: $email) {
       email
+      id
       firstName
       lastName
       phoneNumber
@@ -208,6 +213,7 @@ export const getMaker = /* GraphQL */ `
         city
         state
         zipCode
+        country
       }
       coordinates {
         latitude
@@ -245,6 +251,7 @@ export const listMakers = /* GraphQL */ `
           city
           state
           zipCode
+          country
         }
         coordinates {
           latitude

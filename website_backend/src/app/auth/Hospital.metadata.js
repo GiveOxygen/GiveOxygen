@@ -1,55 +1,34 @@
-export default {
-  fields: [{
-    key: 'jobTitle',
-    type: 'String',
-    label: 'Job Title',
-    isRequired: true,
-  }, {
-    key: 'hospitalName',
-    type: 'String',
-    label: 'Hospital Name',
-    isRequired: true,
-  }, {
-    key: 'hospitalEmail',
-    type: 'Email',
-    label: 'Hospital Email',
-    isRequired: true,
-  }, {
-    key: 'hospitalPhoneNumber',
-    type: 'String',
-    formType: 'phone',
-    label: 'Hospital Phone Number',
-    isRequired: true,
-  }, {
-    key: 'hospitalAddress',
-    type: 'Object',
-    label: 'Address',
-    formType: 'Object',
-    formObjects: [{
-      key: 'street',
+import AddressOptions from './AddressOptions';
+
+export default (t) => {
+  return {
+    fields: [{
+      key: 'jobTitle',
       type: 'String',
-      label: 'Street',
+      label: t('profile.jobTitle'),
       isRequired: true,
     }, {
-      key: 'street2',
+      key: 'hospitalName',
       type: 'String',
-      label: 'Street 2',
-      isRequired: false,
-    }, {
-      key: 'city',
-      type: 'String',
-      label: 'City',
+      label: t('hospital.name'),
       isRequired: true,
     }, {
-      key: 'state',
-      type: 'String',
-      label: 'State',
+      key: 'hospitalEmail',
+      type: 'Email',
+      label: t('hospital.email'),
       isRequired: true,
     }, {
-      key: 'zipCode',
+      key: 'hospitalPhoneNumber',
       type: 'String',
-      label: 'Zip Code',
+      // formType: 'phone',
+      label: t('hospital.phoneNumber'),
       isRequired: true,
+    }, {
+      key: 'hospitalAddress',
+      type: 'Object',
+      label: t('hospital.address'),
+      formType: 'Object',
+      formObjects: AddressOptions(t),
     }],
-  }],
+  };
 };

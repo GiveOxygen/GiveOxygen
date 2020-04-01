@@ -1,0 +1,54 @@
+{
+  "app.name": "Give Oxygen",
+  "app.copyright": "Copyright 2020 Give Oxygen LLC | All Rights Reserved | Contact",
+
+  "action.next": "Next",
+  "action.backToSignIn": "Back to Sign In",
+  "action.add": "Add",
+  "action.verify": "Verify",
+  "action.goTo": "Go To",
+  "action.update": "Update",
+
+  "auth.signUp": "Sign Up",
+  "auth.login": "Login",
+  "auth.forgotPassword": "Forgot Password",
+  "auth.phoneNumberWithCountryCode": "Phone Number (country code)",
+  "auth.iAmRole": "I am a ...",
+  "auth.code": "Code",
+  "auth.verifyEmail": "Verify Email",
+
+  "profile": "Profile",
+  "profile.email": "Email",
+  "profile.password": "Password",
+  "profile.firstName": "First Name",
+  "profile.lastName": "Last Name",
+  "profile.phoneNumber": "Phone Number",
+  "profile.jobTitle": "Job title",
+  "profile.address": "Address",
+  "profile.address.street": "Street",
+  "profile.address.street2": "Street 2",
+  "profile.address.city": "City",
+  "profile.address.state": "State / Province",
+  "profile.address.zipCode": "Zip Code",
+  "profile.address.country": "Country",
+
+  "hospital": "Hospital",
+  "hospitals": "Hospitals",
+  "hospital.admin": "Hospital Admin",
+  "hospital.name": "Hospitals Name",
+  "hospital.email": "Hospitals Email",
+  "hospital.phoneNumber": "Hospitals Phone Number",
+  "hospital.address": "Hospitals Address",
+
+  "maker": "Maker",
+  "makers": "Makers",
+
+  "map.aroundMe": "Within {{radiusInMiles}} miles",
+
+  "dashboard": "Dashboard",
+
+  "annoucement.title": "Thank you for signup.",
+  "annoucement.content": "We will be sending you an email with further instructions, in the meantime we are redirecting you to the main page which has the latest information on the project build and coordination.",
+
+  "end": "Env"
+}

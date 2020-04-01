@@ -1,9 +1,9 @@
 .map-container {
-    height: calc(100vh - 100px)
+    height: 100%;
 }
 
 .list-container {
-    height: calc(100vh - 100px);
+    height: 100%;
     overflow: auto;
 }
 

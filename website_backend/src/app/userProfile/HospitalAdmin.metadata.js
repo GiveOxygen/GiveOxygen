@@ -1,15 +1,18 @@
 export default (t) => {
   return {
     fields: [{
+      key: 'id',
+      type: 'String',
+      label: 'ID',
+      isRequired: true,
+      isDisabled: true,
+      isHidden: true,
+    }, {
       key: 'email',
       type: 'Email',
       label: t('profile.email'),
       isRequired: true,
-    }, {
-      key: 'password',
-      type: 'Password',
-      label: t('profile.password'),
-      isRequired: true,
+      isDisabled: true,
     }, {
       key: 'firstName',
       type: 'String',
@@ -24,19 +27,13 @@ export default (t) => {
       key: 'phoneNumber',
       type: 'string',
       // formType: 'phone',
-      label: t('auth.phoneNumberWithCountryCode'),
+      label: t('profile.phoneNumber'),
       isRequired: true,
     }, {
-      key: 'role',
+      key: 'jobTitle',
       type: 'String',
-      label: t('auth.iAmRole'),
+      label: t('profile.jobTitle'),
       isRequired: true,
-      formType: 'Radio',
-      formOptions: [
-        { label: t('hospital.admin'), value: 'hospitalAdmin' },
-        { label: t('maker'), value: 'maker' },
-        // { label: 'Supplier', value: 'supplier' },
-      ],
     }],
   };
 };

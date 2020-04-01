@@ -21,6 +21,7 @@ export const createHospital = /* GraphQL */ `
         city
         state
         zipCode
+        country
       }
       coordinates {
         latitude
@@ -62,6 +63,7 @@ export const updateHospital = /* GraphQL */ `
         city
         state
         zipCode
+        country
       }
       coordinates {
         latitude
@@ -103,6 +105,7 @@ export const deleteHospital = /* GraphQL */ `
         city
         state
         zipCode
+        country
       }
       coordinates {
         latitude
@@ -153,6 +156,7 @@ export const createHospitalAdmin = /* GraphQL */ `
           city
           state
           zipCode
+          country
         }
         coordinates {
           latitude
@@ -194,6 +198,7 @@ export const updateHospitalAdmin = /* GraphQL */ `
           city
           state
           zipCode
+          country
         }
         coordinates {
           latitude
@@ -235,6 +240,7 @@ export const deleteHospitalAdmin = /* GraphQL */ `
           city
           state
           zipCode
+          country
         }
         coordinates {
           latitude
@@ -266,6 +272,7 @@ export const createMaker = /* GraphQL */ `
         city
         state
         zipCode
+        country
       }
       coordinates {
         latitude
@@ -293,6 +300,7 @@ export const updateMaker = /* GraphQL */ `
         city
         state
         zipCode
+        country
       }
       coordinates {
         latitude
@@ -320,6 +328,7 @@ export const deleteMaker = /* GraphQL */ `
         city
         state
         zipCode
+        country
       }
       coordinates {
         latitude

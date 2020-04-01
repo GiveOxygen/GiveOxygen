@@ -4,6 +4,7 @@ type Address {
   city: String!
   state: String!
   zipCode: String!
+  country: String!
 }
 
 type Coordinates {
