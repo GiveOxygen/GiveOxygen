@@ -5,6 +5,7 @@ export const getHospitalAdmin = /* GraphQL */ `
   query GetHospitalAdmin($email: String!) {
     getHospitalAdmin(email: $email) {
       email
+      id
       firstName
       lastName
       phoneNumber
@@ -199,6 +200,7 @@ export const getMaker = /* GraphQL */ `
   query GetMaker($email: String!) {
     getMaker(email: $email) {
       email
+      id
       firstName
       lastName
       phoneNumber

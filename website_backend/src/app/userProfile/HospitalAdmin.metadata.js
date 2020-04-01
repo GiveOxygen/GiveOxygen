@@ -35,11 +35,5 @@ export default {
     type: 'String',
     label: 'Job Title',
     isRequired: true,
-  }, {
-    key: 'address',
-    type: 'Object',
-    label: 'Address',
-    formType: 'Object',
-    formObjects: AddressOptions,
   }],
 };

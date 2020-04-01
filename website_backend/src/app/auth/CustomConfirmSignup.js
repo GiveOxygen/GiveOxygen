@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
-import { Container } from '@material-ui/core';
+import { Grid, Paper } from '@material-ui/core';
 import DetailForm from 'react-material-final-form';
 
 import metadata from './CustomConfirmSignup.metadata';
@@ -30,20 +30,30 @@ const CustomConfirmSignUp = ({ onStateChange, authState, authData = {} }) => {
   if (authState !== 'confirmSignUp') return null;
 
   return (
-    <Container>
-      <BackNavigatorButton
-        title={'Back to Sign In'}
-        onClick={() => onStateChange('signIn')}
-      />
-      <DetailForm
-        title={'Verify Email'}
-        metadata={metadata}
-        data={{}}
-        isLoading={isSubmitting}
-        onSubmit={confirmSignUp}
-        submitButtonText="Verify"
-      />
-    </Container>
+    <Grid container alignItems="center" justify="center" style={{ height: '100vh', paddingTop: 0 }}>
+      <Paper style={{ width: 300, maxWidth: '100%', padding: 32 }}>
+        <DetailForm
+          title={'Verify Email'}
+          metadata={metadata}
+          data={{}}
+          isLoading={isSubmitting}
+          onSubmit={confirmSignUp}
+          submitButtonText="Verify"
+          submitButtonProps={{
+            variant: 'contained',
+            color: 'primary',
+            type: 'submit',
+            fullWidth: true,
+          }}
+        />
+        <div style={{ paddingTop: 24 }}>
+          <BackNavigatorButton
+            title={'Back to Sign In'}
+            onClick={() => onStateChange('signIn')}
+          />
+        </div>
+      </Paper>
+    </Grid>
   );
 };
 

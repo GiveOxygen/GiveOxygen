@@ -20,6 +20,15 @@ const Website = ({ history }) => {
       {!hideHeader &&
       <Grid container justify="space-between" alignItems="center">
         <h1>Give Oxygen Map</h1>
+        <div style={{ flex: 1 }} />
+        <Button
+          color="primary"
+          component={AdapterNavLink}
+          target="_self"
+          to={'/app?signUp=1'}
+        >
+          SignUp
+        </Button>
         <Button
           color="primary"
           component={AdapterNavLink}
