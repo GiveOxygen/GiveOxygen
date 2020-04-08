@@ -69,35 +69,7 @@ const CustomSignUp = ({ onStateChange, authState }) => {
     }
   };
 
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      setData({
-        profile: {
-          email: 'jhuang@transurban.tech',
-          password: 'password',
-          firstName: 'John',
-          lastName: 'Huang',
-          phoneNumber: '+1626321276',
-          role: data.role,
-        },
-        hospitalAdmin: {
-          // jobTitle: 'Doctor',
-          // hospitalName: 'Hoag',
-          // hospitalEmail: 'info@hoag.org',
-          // hospitalPhoneNumber: '6263212768',
-          // hospitalAddress: {
-          //   street: '123 Sand canyon ave',
-          //   city: 'Irvine',
-          //   state: 'CA',
-          //   zipCode: '9260',
-          // },
-        },
-        maker: {
-
-        },
-      });
-    }
-  }, []);
+  useEffect(() => {}, []);
 
   if (authState !== 'signUp') return null;
 
